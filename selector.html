@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AF001EW Members of the Armed Forces by residence type by sex by age | Office for National Statistics</title>
+    <link rel="stylesheet" type="text/css" href="https://www.ons.gov.uk/assets/css/main.css">
+    <style>
+        .modal {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background-color: white;
+        }
+        .options {
+            display: none;
+        }
+        .selected__item:after {
+            content: ', ';
+        }
+        .selected__item:last-child:after {
+            content: '';
+        }
+    </style>
+</head>
+<body>
+
+<nav class="height--9 border-bottom--gallery-md">
+    <div class="wrapper">
+        <div class="header col-wrap">
+            <div class="col col--lg-one-third col--md-one-third">
+                <a href="/">
+                    <img class="main-logo" src="https://www.ons.gov.uk/assets/img/ons-logo.png" alt="Office for National Statistics">
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="wrapper" style="height:500px;">
+
+    <div class="col--lg-two-thirds">
+        <h1>Dimensions for Members of the Armed Forces by residence type by sex by age</h1>
+    </div>
+
+    <div style="position:relative">
+
+        <ul class="list--neutral">
+            <li><strong>Age</strong><br/>
+                <button class="js-change-age float-right" data-modal="age">Change</button>
+                Selected: <span class="selected-age">
+                    <span class="selected__item">All categories: Age 16 and over</span><span class="selected__item">Age 16 to 24</span><span class="selected__item">Age 25 to 34</span><span class="selected__item">Age 35 to 49</span><span class="selected__item"> Age 50 and over</span></span>
+            </li>
+            <li><strong>Sex</strong><br/>
+                <button class="js-change-sex float-right" data-modal="sex">Change</button>
+                Selected: <span class="selected-sex"><span class="selected__item">All categories: Sex</span><span class="selected__item">Female</span><span class="selected__item">Male</span></span>
+            </li>
+            <li><strong>Residence Type</strong><br/>
+                <button class="js-change-residence float-right" data-modal="residence">Change</button>
+                Selected: <span class="selected-residence"><span class="selected__item">All categories: Residence type</span> <span class="selected__item">Lives in a household</span> <span class="selected__item">Lives in a communal establishment</span></span>
+            </li>
+            <!--<li>2011 Statistical Geography Hierarchy-->
+                <!--<button class="js-change-geog">Change</button>-->
+                <!--Selected: <span class="selected-geog"></span>-->
+            <!--</li>-->
+        </ul>
+
+        <a class="btn btn--primary btn--thick btn--wide margin-top--4" href="selector.html">Download</a>
+
+        <div class="modal options options__sex">
+            <h2 class="margin-top-md--0">Select sex:</h2>
+            <form id="options__sex-form">
+                <input id="options__sex-checkbox--total" data-dimension="sex" data-option="all" type="checkbox" name="sex" value="total">
+                <label for="options__sex-checkbox--total">All categories: sex</label><br>
+                <input id="options__sex-checkbox--female" data-dimension="sex" data-option="female" type="checkbox" name="sex" value="female">          <label for="options__sex-checkbox--female">Female</label><br>
+                <input id="options__sex-checkbox--male"  data-dimension="sex" data-option="male" type="checkbox" name="sex" value="male">
+                <label for="options__sex-checkbox--male">Male</label><br>
+                <!--<input type="submit" value="Submit">-->
+                <button id="options__sex-checkbox--save">Save selection</button>
+            </form>
+        </div>
+
+
+        <div class="modal options options__age">
+            <h2 class="margin-top-md--0">Select age:</h2>
+            <form>
+                <input id="options__age-checkbox--total" data-dimension="age" data-option="all" type="checkbox" name="age" value="total">
+                <label for="options__age-checkbox--total">All categories: Age 16 and over</label><br>
+                <input id="options__age-checkbox--age-1" data-dimension="age" data-option="age-16-to-24" type="checkbox" name="age" value="age-16-to-24"><label for="options__age-checkbox--age-1">Age 16 to 24</label><br>
+                <input id="options__age-checkbox--age-2" data-dimension="age" data-option="age-25-to-34" type="checkbox" name="age" value="age-25-to-34"><label for="options__age-checkbox--age-2">Age 25 to 34</label><br>
+                <input id="options__age-checkbox--age-3" data-dimension="age" data-option="age-35-to-49" type="checkbox" name="age" value="age-35-to-49"><label for="options__age-checkbox--age-3">Age 35 to 49</label><br>
+                <input id="options__age-checkbox--age-4" data-dimension="age" data-option="age-50-and-over" type="checkbox" name="age" value="age-50-and-over"><label for="options__age-checkbox--age-4">Age 50 and over</label><br>
+                <!--<input type="submit" value="Submit">-->
+                <button id="options__age-checkbox--save">Save selection</button>
+            </form>
+        </div>
+
+        <div class="modal options options__residence">
+            <h2 class="margin-top-md--0">Select residence type:</h2>
+            <form id="options__residence-form">
+                <input id="options__residence-checkbox--total" data-dimension="residence" data-option="all" type="checkbox" name="residence" value="total">
+                <label for="options__residence-checkbox--total">All categories: Residence Type</label><br>
+                <input id="options__residence-checkbox--household" data-dimension="residence" data-option="lives-in-a-household" type="checkbox" name="residence" value="household">
+                <label for="options__residence-checkbox--household">Lives in a household</label><br>
+                <input id="options__residence-checkbox--communal"  data-dimension="residence" data-option="lives-in-a-communal-establishment" type="checkbox" name="residence" value="communal">
+                <label for="options__residence-checkbox--communal">Lives in a communal establishment</label><br>
+                <!--<input type="submit" value="Submit">-->
+                <button id="options__residence-checkbox--save">Save selection</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+</script>
+
+<script>
+
+    var selected = {
+        age: {
+            "all": true,
+            "age-16-and-over": true,
+            "age-16-to-24": true,
+            "age-25-to-34": true,
+            "age-35-to-49": true,
+            "age-50-and-over": true
+        },
+        sex: {
+            "male": true,
+            "female": true,
+            "all": true
+        },
+        residence: {
+            "all": true,
+            "lives-in-a-household": true,
+            "lives-in-a-communal-establishment": true
+        }
+    };
+
+    $('.js-change-sex').click( function() {
+
+        var modalName = $(this).data('modal');
+        setCheckBoxesInModal(modalName);
+        openModal(modalName);
+
+        $('#options__sex-checkbox--save').click(function(e) {
+            e.preventDefault();
+
+            $('.selected-' + modalName).empty();
+
+            getCheckBoxesInModal(modalName);
+
+            $('#options__sex-checkbox--save').off();
+            $('.options__sex').hide();
+        });
+
+    });
+
+    $('.js-change-age').click( function() {
+
+        var modalName = $(this).data('modal');
+        setCheckBoxesInModal(modalName);
+        openModal(modalName);
+
+        $('#options__age-checkbox--save').click(function(e) {
+            e.preventDefault();
+
+            $('.selected-' + modalName).empty();
+
+            getCheckBoxesInModal(modalName);
+
+            $('#options__age-checkbox--save').off();
+            $('.options__age').hide();
+        });
+
+    });
+
+    $('.js-change-residence').click( function() {
+
+        var modalName = $(this).data('modal');
+        setCheckBoxesInModal(modalName);
+        openModal(modalName);
+
+        $('#options__residence-checkbox--save').click(function(e) {
+            e.preventDefault();
+
+            $('.selected-' + modalName).empty();
+
+            getCheckBoxesInModal(modalName);
+
+            $('#options__residence-checkbox--save').off();
+            $('.options__residence').hide();
+        });
+
+    });
+
+    function openModal(modalClass) {
+        $('.options__' + modalClass).show();
+    }
+
+    function setCheckBoxesInModal(modalClass) {
+        $('.options__' + modalClass).find('input').each( function() {
+            var option = $(this).data('option');
+            var dimension = $(this).data('dimension');
+            if (selected[dimension][option]) {
+                $(this).prop( "checked", true )
+            } else {
+                $(this).prop( "checked", false )
+            }
+
+        });
+    }
+
+    function getCheckBoxesInModal(modalClass) {
+        $('.options__' + modalClass).find('input').each( function() {
+            var option = $(this).data('option');
+            var dimension = $(this).data('dimension');
+            var labelText = $(this).next().text();
+            var selectedList = $('.selected-' + modalClass);
+            if ($(this).prop( "checked" )) {
+                selected[dimension][option] = true;
+                selectedList.append(wrapInSpan(labelText));
+            } else {
+                selected[dimension][option] = false;
+            }
+
+        });
+    }
+
+    function wrapInSpan(text) {
+        return $('<span class="selected__item">' + text + '</span>');
+    }
+
+</script>
+
+</body>
+</html>
