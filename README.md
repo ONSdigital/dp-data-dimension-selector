@@ -1,5 +1,5 @@
-dp-repo-template
-================
+dp-data-dimension-selector
+==========================
 
 Flat HTML prototypes for testing UI of dataset dimension selection and downloading 
 
