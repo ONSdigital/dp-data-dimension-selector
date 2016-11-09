@@ -48,16 +48,16 @@
 
         <ul class="list--neutral">
             <li><strong>Age</strong><br/>
-                <button class="js-change-age float-right" data-modal="age">Change</button>
+                <button class="js-change-age float-right btn btn--secondary btn--small btn--thin" data-modal="age">Change</button>
                 Selected: <span class="selected-age">
                     <span class="selected__item">All categories: Age 16 and over</span><span class="selected__item">Age 16 to 24</span><span class="selected__item">Age 25 to 34</span><span class="selected__item">Age 35 to 49</span><span class="selected__item"> Age 50 and over</span></span>
             </li>
             <li><strong>Sex</strong><br/>
-                <button class="js-change-sex float-right" data-modal="sex">Change</button>
+                <button class="js-change-sex float-right btn btn--secondary btn--small btn--thin" data-modal="sex">Change</button>
                 Selected: <span class="selected-sex"><span class="selected__item">All categories: Sex</span><span class="selected__item">Female</span><span class="selected__item">Male</span></span>
             </li>
             <li><strong>Residence Type</strong><br/>
-                <button class="js-change-residence float-right" data-modal="residence">Change</button>
+                <button class="js-change-residence float-right btn btn--secondary btn--small btn--thin" data-modal="residence">Change</button>
                 Selected: <span class="selected-residence"><span class="selected__item">All categories: Residence type</span> <span class="selected__item">Lives in a household</span> <span class="selected__item">Lives in a communal establishment</span></span>
             </li>
             <!--<li>2011 Statistical Geography Hierarchy-->
@@ -77,7 +77,8 @@
                 <input id="options__sex-checkbox--male"  data-dimension="sex" data-option="male" type="checkbox" name="sex" value="male">
                 <label for="options__sex-checkbox--male">Male</label><br>
                 <!--<input type="submit" value="Submit">-->
-                <button id="options__sex-checkbox--save">Save selection</button>
+                <button id="options__sex-save" class="btn btn--primary margin-top--2">Save selection</button>
+                <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="sex">Back</button>
             </form>
         </div>
 
@@ -92,7 +93,8 @@
                 <input id="options__age-checkbox--age-3" data-dimension="age" data-option="age-35-to-49" type="checkbox" name="age" value="age-35-to-49"><label for="options__age-checkbox--age-3">Age 35 to 49</label><br>
                 <input id="options__age-checkbox--age-4" data-dimension="age" data-option="age-50-and-over" type="checkbox" name="age" value="age-50-and-over"><label for="options__age-checkbox--age-4">Age 50 and over</label><br>
                 <!--<input type="submit" value="Submit">-->
-                <button id="options__age-checkbox--save">Save selection</button>
+                <button id="options__age-save" class="btn btn--primary margin-top--2">Save selection</button>
+                <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="age">Back</button>
             </form>
         </div>
 
@@ -106,7 +108,8 @@
                 <input id="options__residence-checkbox--communal"  data-dimension="residence" data-option="lives-in-a-communal-establishment" type="checkbox" name="residence" value="communal">
                 <label for="options__residence-checkbox--communal">Lives in a communal establishment</label><br>
                 <!--<input type="submit" value="Submit">-->
-                <button id="options__residence-checkbox--save">Save selection</button>
+                <button id="options__residence-save" class="btn btn--primary margin-top--2">Save selection</button>
+                <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="residence">Back</button>
             </form>
         </div>
     </div>
@@ -147,15 +150,16 @@
         setCheckBoxesInModal(modalName);
         openModal(modalName);
 
-        $('#options__sex-checkbox--save').click(function(e) {
+        $('#options__sex-save').click(function(e) {
             e.preventDefault();
 
             $('.selected-' + modalName).empty();
 
             getCheckBoxesInModal(modalName);
 
-            $('#options__sex-checkbox--save').off();
+            $('#options__sex-save').off();
             $('.options__sex').hide();
+            console.log(selected);
         });
 
     });
@@ -166,14 +170,14 @@
         setCheckBoxesInModal(modalName);
         openModal(modalName);
 
-        $('#options__age-checkbox--save').click(function(e) {
+        $('#options__age-save').click(function(e) {
             e.preventDefault();
 
             $('.selected-' + modalName).empty();
 
             getCheckBoxesInModal(modalName);
 
-            $('#options__age-checkbox--save').off();
+            $('#options__age-save').off();
             $('.options__age').hide();
         });
 
@@ -185,17 +189,23 @@
         setCheckBoxesInModal(modalName);
         openModal(modalName);
 
-        $('#options__residence-checkbox--save').click(function(e) {
+        $('#options__residence-save').click(function(e) {
             e.preventDefault();
 
             $('.selected-' + modalName).empty();
 
             getCheckBoxesInModal(modalName);
 
-            $('#options__residence-checkbox--save').off();
+            $('#options__residence-save').off();
             $('.options__residence').hide();
         });
 
+    });
+
+    $('.js-close-modal').click(function(e) {
+        e.preventDefault();
+        var modalName = $(this).data('modal');
+        $('.options__' + modalName).hide();
     });
 
     function openModal(modalClass) {
