@@ -4,31 +4,9 @@
     <meta charset="UTF-8">
     <title>AF001EW Members of the Armed Forces by residence type by sex by age | Office for National Statistics</title>
     <link rel="stylesheet" type="text/css" href="https://www.ons.gov.uk/assets/css/main.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        .modal {
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            background-color: white;
-        }
-        .options {
-            display: none;
-        }
-        .selected__item:after {
-            content: ', ';
-        }
-        .selected__item:last-child:after {
-            content: '';
-        }
-        a {
-            text-decoration: underline;
-        }
 
-        a:hover {
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -45,7 +23,7 @@
     </div>
 </nav>
 
-<div class="wrapper" style="height:500px;">
+<div class="wrapper" style="height:600px;">
 
     <div class="col--lg-two-thirds">
         <h1>Choose dimensions</h1>
@@ -89,16 +67,24 @@
                 </li>
             </ul>
 
-            <a class="btn btn--primary btn--thick btn--wide margin-top--4" href="selector.html">Continue</a>
+            <a class="btn btn--primary btn--thick btn--wide btn--big margin-top--4" href="selector.html">Continue</a>
 
             <div class="modal options options__sex">
                 <h2 class="margin-top-md--0">Select sex:</h2>
                 <form id="options__sex-form">
-                    <input id="options__sex-checkbox--total" data-dimension="sex" data-option="all" type="checkbox" name="sex" value="total">
-                    <label for="options__sex-checkbox--total">All categories: sex</label><br>
-                    <input id="options__sex-checkbox--female" data-dimension="sex" data-option="female" type="checkbox" name="sex" value="female">          <label for="options__sex-checkbox--female">Female</label><br>
-                    <input id="options__sex-checkbox--male"  data-dimension="sex" data-option="male" type="checkbox" name="sex" value="male">
-                    <label for="options__sex-checkbox--male">Male</label><br>
+                    <legend class="visuallyhidden">Choose a gender</legend>
+                    <div class="checkbox">
+                        <input id="options__sex-checkbox--total" data-dimension="sex" data-option="all" type="checkbox" name="sex" value="total">
+                        <label for="options__sex-checkbox--total">All categories: sex</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__sex-checkbox--female" data-dimension="sex" data-option="female" type="checkbox" name="sex" value="female">
+                        <label for="options__sex-checkbox--female">Female</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__sex-checkbox--male"  data-dimension="sex" data-option="male" type="checkbox" name="sex" value="male">
+                        <label for="options__sex-checkbox--male">Male</label><br>
+                    </div>
                     <!--<input type="submit" value="Submit">-->
                     <button id="options__sex-save" class="btn btn--primary margin-top--2">Save selection</button>
                     <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="sex">Back</button>
@@ -109,13 +95,27 @@
             <div class="modal options options__age">
                 <h2 class="margin-top-md--0">Select age:</h2>
                 <form>
-                    <input id="options__age-checkbox--total" data-dimension="age" data-option="all" type="checkbox" name="age" value="total">
-                    <label for="options__age-checkbox--total">All categories: Age 16 and over</label><br>
-                    <input id="options__age-checkbox--age-1" data-dimension="age" data-option="age-16-to-24" type="checkbox" name="age" value="age-16-to-24"><label for="options__age-checkbox--age-1">Age 16 to 24</label><br>
-                    <input id="options__age-checkbox--age-2" data-dimension="age" data-option="age-25-to-34" type="checkbox" name="age" value="age-25-to-34"><label for="options__age-checkbox--age-2">Age 25 to 34</label><br>
-                    <input id="options__age-checkbox--age-3" data-dimension="age" data-option="age-35-to-49" type="checkbox" name="age" value="age-35-to-49"><label for="options__age-checkbox--age-3">Age 35 to 49</label><br>
-                    <input id="options__age-checkbox--age-4" data-dimension="age" data-option="age-50-and-over" type="checkbox" name="age" value="age-50-and-over"><label for="options__age-checkbox--age-4">Age 50 and over</label><br>
-                    <!--<input type="submit" value="Submit">-->
+                    <legend class="visuallyhidden">Choose an age group</legend>
+                    <div class="checkbox">
+                        <input id="options__age-checkbox--total" data-dimension="age" data-option="all" type="checkbox" name="age" value="total">
+                        <label for="options__age-checkbox--total">All categories: Age 16 and over</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__age-checkbox--age-1" data-dimension="age" data-option="age-16-to-24" type="checkbox" name="age" value="age-16-to-24">
+                        <label for="options__age-checkbox--age-1">Age 16 to 24</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__age-checkbox--age-2" data-dimension="age" data-option="age-25-to-34" type="checkbox" name="age" value="age-25-to-34">
+                        <label for="options__age-checkbox--age-2">Age 25 to 34</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__age-checkbox--age-3" data-dimension="age" data-option="age-35-to-49" type="checkbox" name="age" value="age-35-to-49">
+                        <label for="options__age-checkbox--age-3">Age 35 to 49</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__age-checkbox--age-4" data-dimension="age" data-option="age-50-and-over" type="checkbox" name="age" value="age-50-and-over">
+                        <label for="options__age-checkbox--age-4">Age 50 and over</label>
+                    </div>
                     <button id="options__age-save" class="btn btn--primary margin-top--2">Save selection</button>
                     <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="age">Back</button>
                 </form>
@@ -124,13 +124,19 @@
             <div class="modal options options__residence">
                 <h2 class="margin-top-md--0">Select residence type:</h2>
                 <form id="options__residence-form">
-                    <input id="options__residence-checkbox--total" data-dimension="residence" data-option="all" type="checkbox" name="residence" value="total">
-                    <label for="options__residence-checkbox--total">All categories: Residence Type</label><br>
-                    <input id="options__residence-checkbox--household" data-dimension="residence" data-option="lives-in-a-household" type="checkbox" name="residence" value="household">
-                    <label for="options__residence-checkbox--household">Lives in a household</label><br>
-                    <input id="options__residence-checkbox--communal"  data-dimension="residence" data-option="lives-in-a-communal-establishment" type="checkbox" name="residence" value="communal">
-                    <label for="options__residence-checkbox--communal">Lives in a communal establishment</label><br>
-                    <!--<input type="submit" value="Submit">-->
+                    <legend class="visuallyhidden">Choose a residence type</legend>
+                    <div class="checkbox">
+                        <input id="options__residence-checkbox--total" data-dimension="residence" data-option="all" type="checkbox" name="residence" value="total">
+                        <label for="options__residence-checkbox--total">All categories: Residence Type</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__residence-checkbox--household" data-dimension="residence" data-option="lives-in-a-household" type="checkbox" name="residence" value="household">
+                        <label for="options__residence-checkbox--household">Lives in a household</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__residence-checkbox--communal"  data-dimension="residence" data-option="lives-in-a-communal-establishment" type="checkbox" name="residence" value="communal">
+                        <label for="options__residence-checkbox--communal">Lives in a communal establishment</label>
+                    </div>
                     <button id="options__residence-save" class="btn btn--primary margin-top--2">Save selection</button>
                     <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="residence">Back</button>
                 </form>
@@ -138,6 +144,20 @@
         </div>
     </div>
 </div>
+
+<footer class="print--hide">
+    <h2 class="visuallyhidden">Footer links</h2>
+    <div class="footer">
+        <div class="wrapper">
+            <div class="footer-license">
+                <img class="footer-license__img" alt="OGL" width="60" src="https://www.ons.gov.uk/img/ogl.png">
+                <p class="footer-license__text margin-left-sm--0">
+                    All content is available under the <a class="icon--hide" href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a> <span class="icon icon-external--light-small"></span>, except where otherwise stated
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
