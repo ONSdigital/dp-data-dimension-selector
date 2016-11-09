@@ -22,6 +22,13 @@
         .selected__item:last-child:after {
             content: '';
         }
+        a {
+            text-decoration: underline;
+        }
+
+        a:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -41,76 +48,93 @@
 <div class="wrapper" style="height:500px;">
 
     <div class="col--lg-two-thirds">
-        <h1>Dimensions for Members of the Armed Forces by residence type by sex by age</h1>
-    </div>
-
-    <div style="position:relative">
-
-        <ul class="list--neutral">
-            <li><strong>Age</strong><br/>
-                <button class="js-change-age float-right btn btn--secondary btn--small btn--thin" data-modal="age">Change</button>
-                Selected: <span class="selected-age">
-                    <span class="selected__item">All categories: Age 16 and over</span><span class="selected__item">Age 16 to 24</span><span class="selected__item">Age 25 to 34</span><span class="selected__item">Age 35 to 49</span><span class="selected__item"> Age 50 and over</span></span>
-            </li>
-            <li><strong>Sex</strong><br/>
-                <button class="js-change-sex float-right btn btn--secondary btn--small btn--thin" data-modal="sex">Change</button>
-                Selected: <span class="selected-sex"><span class="selected__item">All categories: Sex</span><span class="selected__item">Female</span><span class="selected__item">Male</span></span>
-            </li>
-            <li><strong>Residence Type</strong><br/>
-                <button class="js-change-residence float-right btn btn--secondary btn--small btn--thin" data-modal="residence">Change</button>
-                Selected: <span class="selected-residence"><span class="selected__item">All categories: Residence type</span> <span class="selected__item">Lives in a household</span> <span class="selected__item">Lives in a communal establishment</span></span>
-            </li>
-            <!--<li>2011 Statistical Geography Hierarchy-->
-                <!--<button class="js-change-geog">Change</button>-->
-                <!--Selected: <span class="selected-geog"></span>-->
-            <!--</li>-->
-        </ul>
-
-        <a class="btn btn--primary btn--thick btn--wide margin-top--4" href="selector.html">Download</a>
-
-        <div class="modal options options__sex">
-            <h2 class="margin-top-md--0">Select sex:</h2>
-            <form id="options__sex-form">
-                <input id="options__sex-checkbox--total" data-dimension="sex" data-option="all" type="checkbox" name="sex" value="total">
-                <label for="options__sex-checkbox--total">All categories: sex</label><br>
-                <input id="options__sex-checkbox--female" data-dimension="sex" data-option="female" type="checkbox" name="sex" value="female">          <label for="options__sex-checkbox--female">Female</label><br>
-                <input id="options__sex-checkbox--male"  data-dimension="sex" data-option="male" type="checkbox" name="sex" value="male">
-                <label for="options__sex-checkbox--male">Male</label><br>
-                <!--<input type="submit" value="Submit">-->
-                <button id="options__sex-save" class="btn btn--primary margin-top--2">Save selection</button>
-                <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="sex">Back</button>
-            </form>
-        </div>
+        <h1>Choose dimensions</h1>
 
 
-        <div class="modal options options__age">
-            <h2 class="margin-top-md--0">Select age:</h2>
-            <form>
-                <input id="options__age-checkbox--total" data-dimension="age" data-option="all" type="checkbox" name="age" value="total">
-                <label for="options__age-checkbox--total">All categories: Age 16 and over</label><br>
-                <input id="options__age-checkbox--age-1" data-dimension="age" data-option="age-16-to-24" type="checkbox" name="age" value="age-16-to-24"><label for="options__age-checkbox--age-1">Age 16 to 24</label><br>
-                <input id="options__age-checkbox--age-2" data-dimension="age" data-option="age-25-to-34" type="checkbox" name="age" value="age-25-to-34"><label for="options__age-checkbox--age-2">Age 25 to 34</label><br>
-                <input id="options__age-checkbox--age-3" data-dimension="age" data-option="age-35-to-49" type="checkbox" name="age" value="age-35-to-49"><label for="options__age-checkbox--age-3">Age 35 to 49</label><br>
-                <input id="options__age-checkbox--age-4" data-dimension="age" data-option="age-50-and-over" type="checkbox" name="age" value="age-50-and-over"><label for="options__age-checkbox--age-4">Age 50 and over</label><br>
-                <!--<input type="submit" value="Submit">-->
-                <button id="options__age-save" class="btn btn--primary margin-top--2">Save selection</button>
-                <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="age">Back</button>
-            </form>
-        </div>
+        <div style="position:relative">
 
-        <div class="modal options options__residence">
-            <h2 class="margin-top-md--0">Select residence type:</h2>
-            <form id="options__residence-form">
-                <input id="options__residence-checkbox--total" data-dimension="residence" data-option="all" type="checkbox" name="residence" value="total">
-                <label for="options__residence-checkbox--total">All categories: Residence Type</label><br>
-                <input id="options__residence-checkbox--household" data-dimension="residence" data-option="lives-in-a-household" type="checkbox" name="residence" value="household">
-                <label for="options__residence-checkbox--household">Lives in a household</label><br>
-                <input id="options__residence-checkbox--communal"  data-dimension="residence" data-option="lives-in-a-communal-establishment" type="checkbox" name="residence" value="communal">
-                <label for="options__residence-checkbox--communal">Lives in a communal establishment</label><br>
-                <!--<input type="submit" value="Submit">-->
-                <button id="options__residence-save" class="btn btn--primary margin-top--2">Save selection</button>
-                <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="residence">Back</button>
-            </form>
+            <ul class="list--neutral">
+                <li class="margin-left--0 padding-bottom--2 padding-top--2 border-top--gallery-md border-bottom--gallery-md col-wrap width-lg--39">
+                    <div class="col col--md-8 col--lg-8">
+                        <strong>Age</strong>
+                    </div>
+                    <div class="col col--md-34 col--lg-26">Selected: <span class="selected-age">
+                        <span class="selected__item">All categories: Age 16 and over</span><span class="selected__item">Age 16 to 24</span><span class="selected__item">Age 25 to 34</span><span class="selected__item">Age 35 to 49</span><span class="selected__item"> Age 50 and over</span></span>
+                    </div>
+                    <div class="col col--md-5 col--lg-5">
+                        <a class="js-change-age float-right" data-modal="age">Change</a>
+                    </div>
+                </li>
+                <li class="margin-left--0 padding-bottom--2 border-bottom--gallery-md col-wrap width-lg--39">
+                <div class="col col--md-8 col--lg-8">
+                    <strong>Sex</strong>
+                </div>
+                    <div class="col col--md-34 col--lg-26">
+                        Selected: <span class="selected-sex"><span class="selected__item">All categories: Sex</span><span class="selected__item">Female</span><span class="selected__item">Male</span></span>
+                    </div>
+                    <div class="col col--md-5 col--lg-5">
+                        <a class="js-change-sex float-right" data-modal="sex">Change</a>
+                    </div>
+                </li>
+                <li class="margin-left--0 padding-bottom--2 border-bottom--gallery-md col-wrap width-lg--39">
+                    <div class="col col--md-8 col--lg-8">
+                        <strong>Residence Type</strong>
+                    </div>
+                    <div class="col col--md-34 col--lg-26">
+                        Selected: <span class="selected-residence"><span class="selected__item">All categories: Residence type</span> <span class="selected__item">Lives in a household</span> <span class="selected__item">Lives in a communal establishment</span></span>
+                    </div>
+                    <div class="col col--md-5 col--lg-5">
+                        <a class="js-change-residence float-right" data-modal="residence">Change</a>
+                    </div>
+                </li>
+            </ul>
+
+            <a class="btn btn--primary btn--thick btn--wide margin-top--4" href="selector.html">Continue</a>
+
+            <div class="modal options options__sex">
+                <h2 class="margin-top-md--0">Select sex:</h2>
+                <form id="options__sex-form">
+                    <input id="options__sex-checkbox--total" data-dimension="sex" data-option="all" type="checkbox" name="sex" value="total">
+                    <label for="options__sex-checkbox--total">All categories: sex</label><br>
+                    <input id="options__sex-checkbox--female" data-dimension="sex" data-option="female" type="checkbox" name="sex" value="female">          <label for="options__sex-checkbox--female">Female</label><br>
+                    <input id="options__sex-checkbox--male"  data-dimension="sex" data-option="male" type="checkbox" name="sex" value="male">
+                    <label for="options__sex-checkbox--male">Male</label><br>
+                    <!--<input type="submit" value="Submit">-->
+                    <button id="options__sex-save" class="btn btn--primary margin-top--2">Save selection</button>
+                    <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="sex">Back</button>
+                </form>
+            </div>
+
+
+            <div class="modal options options__age">
+                <h2 class="margin-top-md--0">Select age:</h2>
+                <form>
+                    <input id="options__age-checkbox--total" data-dimension="age" data-option="all" type="checkbox" name="age" value="total">
+                    <label for="options__age-checkbox--total">All categories: Age 16 and over</label><br>
+                    <input id="options__age-checkbox--age-1" data-dimension="age" data-option="age-16-to-24" type="checkbox" name="age" value="age-16-to-24"><label for="options__age-checkbox--age-1">Age 16 to 24</label><br>
+                    <input id="options__age-checkbox--age-2" data-dimension="age" data-option="age-25-to-34" type="checkbox" name="age" value="age-25-to-34"><label for="options__age-checkbox--age-2">Age 25 to 34</label><br>
+                    <input id="options__age-checkbox--age-3" data-dimension="age" data-option="age-35-to-49" type="checkbox" name="age" value="age-35-to-49"><label for="options__age-checkbox--age-3">Age 35 to 49</label><br>
+                    <input id="options__age-checkbox--age-4" data-dimension="age" data-option="age-50-and-over" type="checkbox" name="age" value="age-50-and-over"><label for="options__age-checkbox--age-4">Age 50 and over</label><br>
+                    <!--<input type="submit" value="Submit">-->
+                    <button id="options__age-save" class="btn btn--primary margin-top--2">Save selection</button>
+                    <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="age">Back</button>
+                </form>
+            </div>
+
+            <div class="modal options options__residence">
+                <h2 class="margin-top-md--0">Select residence type:</h2>
+                <form id="options__residence-form">
+                    <input id="options__residence-checkbox--total" data-dimension="residence" data-option="all" type="checkbox" name="residence" value="total">
+                    <label for="options__residence-checkbox--total">All categories: Residence Type</label><br>
+                    <input id="options__residence-checkbox--household" data-dimension="residence" data-option="lives-in-a-household" type="checkbox" name="residence" value="household">
+                    <label for="options__residence-checkbox--household">Lives in a household</label><br>
+                    <input id="options__residence-checkbox--communal"  data-dimension="residence" data-option="lives-in-a-communal-establishment" type="checkbox" name="residence" value="communal">
+                    <label for="options__residence-checkbox--communal">Lives in a communal establishment</label><br>
+                    <!--<input type="submit" value="Submit">-->
+                    <button id="options__residence-save" class="btn btn--primary margin-top--2">Save selection</button>
+                    <button class="js-close-modal btn btn--secondary margin-top--2" data-modal="residence">Back</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
