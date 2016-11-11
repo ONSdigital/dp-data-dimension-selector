@@ -108,7 +108,7 @@ function getCheckBoxesInModal(modalClass) {
         var selectedList = $('.selected-' + modalClass);
         if ($(this).prop( "checked" )) {
             selected[dimension][option] = true;
-            selectedList.append(wrapInSpan(labelText));
+            selectedList.append(wrapInDiv(labelText));
         } else {
             selected[dimension][option] = false;
         }
@@ -116,6 +116,6 @@ function getCheckBoxesInModal(modalClass) {
     });
 }
 
-function wrapInSpan(text) {
-    return $('<span class="selected__item">' + text + '</span>');
+function wrapInDiv(text) {
+    return $('<div class="selected__item">' + text + '</div>');
 }

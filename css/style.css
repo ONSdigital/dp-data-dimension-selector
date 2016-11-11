@@ -1,6 +1,15 @@
+*, p {
+    font-size: 17px;
+    line-height: 28px;
+}
+
 .btn--big {
     font-size: 17px;
     font-weight: 600;
+}
+.btn--everything {
+    font-size: 17px;
+    display: block;
 }
 
 .btn:focus {
@@ -192,7 +201,7 @@
 .modal {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 1px;
     right: 0;
     bottom: 0;
     background-color: white;
