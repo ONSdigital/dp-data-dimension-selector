@@ -48,7 +48,7 @@ function displayDownload() {
     // var downloadHTML = '<p class="flush"><a class="font-size--17" href="dataset.zip"><span class="icon icon-download--dark"></span>Download *dataset name* (ZIP, 30MB)</a></p>',
     //     returnBtn = '<button id="return-to-formats">Back</button>';
 
-    main.innerHTML = '<button class="btn btn--primary btn--big btn--thick btn--wide">Download *dataset name* (ZIP, 2MB)</button>';
+    main.innerHTML = '<button class="btn btn--primary btn--big btn--thick btn--wide">Download dataset (ZIP, 2MB)</button>';
 
 
 }
