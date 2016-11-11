@@ -1,0 +1,16 @@
+observation,statistical_unit_eng,measure_type_eng,geographic_area,Sex,Age,Residence Type
+14831,Person,Count,K04000001,Females,All categories: Age 16 and over,All categories: Residence Type
+11742,Person,Count,K04000001,Females,All categories: Age 16 and over,Lives in a household
+3089,Person,Count,K04000001,Females,All categories: Age 16 and over,Lives in a communal establishment
+4530,Person,Count,K04000001,Females,Age 16 to 24,All categories: Residence Type
+2979,Person,Count,K04000001,Females,Age 16 to 24,Lives in a household
+1551,Person,Count,K04000001,Females,Age 16 to 24,Lives in a communal establishment
+6064,Person,Count,K04000001,Females,Age 25 to 34,All categories: Residence Type
+4844,Person,Count,K04000001,Females,Age 25 to 34,Lives in a household
+1220,Person,Count,K04000001,Females,Age 25 to 34,Lives in a communal establishment
+3461,Person,Count,K04000001,Females,Age 35 to 49,All categories: Residence Type
+3248,Person,Count,K04000001,Females,Age 35 to 49,Lives in a household
+213,Person,Count,K04000001,Females,Age 35 to 49,Lives in a communal establishment
+776,Person,Count,K04000001,Females,Age 50 and over,All categories: Residence Type
+671,Person,Count,K04000001,Females,Age 50 and over,Lives in a household
+105,Person,Count,K04000001,Females,Age 50 and over,Lives in a communal establishment
