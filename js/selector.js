@@ -1,21 +1,24 @@
-var selected = {
+var test = $('body').data('test');
+console.log ('Viewing test: ', test);
+
+var selected = JSON.parse(localStorage.getItem(test + '-selected')) || {
     age: {
         "all": true,
-        "age-16-and-over": true,
-        "age-16-to-24": true,
-        "age-25-to-34": true,
-        "age-35-to-49": true,
-        "age-50-and-over": true
+        "16-and-over": true,
+        "16-to-24": true,
+        "25-to-34": true,
+        "35-to-49": true,
+        "50-and-over": true
     },
     sex: {
+        "all": true,
         "male": true,
-        "female": true,
-        "all": true
+        "female": true
     },
     residence: {
         "all": true,
-        "lives-in-a-household": true,
-        "lives-in-a-communal-establishment": true
+        "household": true,
+        "communal": true
     }
 };
 
@@ -32,9 +35,10 @@ $('.js-change-sex').click( function() {
 
         getCheckBoxesInModal(modalName);
 
+        saveToLocalStorage();
+
         $('#options__sex-save').off();
         $('.options__sex').hide();
-        console.log(selected);
     });
 
 });
@@ -51,6 +55,8 @@ $('.js-change-age').click( function() {
         $('.selected-' + modalName).empty();
 
         getCheckBoxesInModal(modalName);
+
+        saveToLocalStorage();
 
         $('#options__age-save').off();
         $('.options__age').hide();
@@ -70,6 +76,8 @@ $('.js-change-residence').click( function() {
         $('.selected-' + modalName).empty();
 
         getCheckBoxesInModal(modalName);
+
+        saveToLocalStorage();
 
         $('#options__residence-save').off();
         $('.options__residence').hide();
@@ -119,3 +127,22 @@ function getCheckBoxesInModal(modalClass) {
 function wrapInDiv(text) {
     return $('<div class="selected__item">' + text + '</div>');
 }
+
+function saveToLocalStorage() {
+    localStorage.setItem(test + '-selected', JSON.stringify(selected));
+}
+
+$(function(){
+    $.each(selected, function(key, value) {
+        //console.log(key, value);
+        var selectedList = $('.selected-' + key);
+        $.each(value, function(childKey, childValue) {
+            //console.log(childKey, childValue);
+            if (childValue) {
+                var selectedText = $('#' + key + '-' + childKey).text();
+                //console.log(selectedText);
+                selectedList.append(wrapInDiv(selectedText));
+            }
+        });
+    });
+});

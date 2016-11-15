@@ -9,7 +9,7 @@
 
     </style>
 </head>
-<body>
+<body data-test="test-2">
 
 <nav class="height--9 border-bottom--gallery-md">
     <div class="wrapper">
@@ -38,7 +38,7 @@
                         <strong>Age</strong>
                     </div>
                     <div class="col col--md-34 col--lg-26">
-                        <div class="selected-age"><div class="selected__item">All age ranges combined</div><div class="selected__item">Age 16 to 24</div><div class="selected__item">Age 25 to 34</div><div class="selected__item">Age 35 to 49</div><div class="selected__item"> Age 50 and over</div></div>
+                        <div class="selected-age"></div>
                     </div>
                     <div class="col col--md-5 col--lg-5">
                         <a class="js-change-age float-right" data-modal="age">Change</a>
@@ -49,7 +49,7 @@
                     <strong>Sex</strong>
                 </div>
                     <div class="col col--md-34 col--lg-26">
-                        <div class="selected-sex"><div class="selected__item">Female and male combined</div><div class="selected__item">Female</div><div class="selected__item">Male</div></div>
+                        <div class="selected-sex"></div>
                     </div>
                     <div class="col col--md-5 col--lg-5">
                         <a class="js-change-sex float-right" data-modal="sex">Change</a>
@@ -60,7 +60,7 @@
                         <strong>Residence Type</strong>
                     </div>
                     <div class="col col--md-34 col--lg-26">
-                        <div class="selected-residence"><div class="selected__item">Household and communal combined</div> <div class="selected__item">Household</div> <div class="selected__item">Communal</div></div>
+                        <div class="selected-residence"></div>
                     </div>
                     <div class="col col--md-5 col--lg-5">
                         <a class="js-change-residence float-right" data-modal="residence">Change</a>
@@ -68,7 +68,7 @@
                 </li>
             </ul>
 
-            <a class="btn btn--primary btn--thick btn--wide btn--big margin-top--4 margin-bottom--8" href="download.html">Continue to download &gt;</a>
+            <a id="continue-to-download" class="btn btn--primary btn--thick btn--wide btn--big margin-top--4 margin-bottom--8" href="download.html">Continue to download &gt;</a>
 
             <div class="modal options options__sex">
                 <a href="index.html" class="btn--everything margin-top--2 js-close-modal" data-modal="sex">Back</a>
@@ -78,15 +78,15 @@
                     <legend class="visuallyhidden">Choose a gender</legend>
                     <div class="checkbox">
                         <input id="options__sex-checkbox--total" data-dimension="sex" data-option="all" type="checkbox" name="sex" value="total">
-                        <label for="options__sex-checkbox--total">Female and male combined</label>
+                        <label id="sex-all" for="options__sex-checkbox--total">Female and male combined</label>
                     </div>
                     <div class="checkbox">
                         <input id="options__sex-checkbox--female" data-dimension="sex" data-option="female" type="checkbox" name="sex" value="female">
-                        <label for="options__sex-checkbox--female">Female</label>
+                        <label id="sex-female" for="options__sex-checkbox--female">Female</label>
                     </div>
                     <div class="checkbox">
                         <input id="options__sex-checkbox--male"  data-dimension="sex" data-option="male" type="checkbox" name="sex" value="male">
-                        <label for="options__sex-checkbox--male">Male</label><br>
+                        <label id="sex-male" for="options__sex-checkbox--male">Male</label><br>
                     </div>
                     <!--<input type="submit" value="Submit">-->
                     <button id="options__sex-save" class="btn btn--primary btn--thick btn--wide btn--big margin-top--4">Save selection</button>
@@ -102,23 +102,27 @@
                     <legend class="visuallyhidden">Choose an age group</legend>
                     <div class="checkbox">
                         <input id="options__age-checkbox--total" data-dimension="age" data-option="all" type="checkbox" name="age" value="total">
-                        <label for="options__age-checkbox--total">All age ranges combined</label>
+                        <label id="age-all" for="options__age-checkbox--total">All age ranges combined</label>
                     </div>
                     <div class="checkbox">
-                        <input id="options__age-checkbox--age-1" data-dimension="age" data-option="age-16-to-24" type="checkbox" name="age" value="age-16-to-24">
-                        <label for="options__age-checkbox--age-1">Age 16 to 24</label>
+                        <input id="options__age-checkbox--age-1" data-dimension="age" data-option="16-and-over" type="checkbox" name="age" value="16-and-over">
+                        <label id="age-16-and-over" for="options__age-checkbox--age-1">Age 16 and over</label>
                     </div>
                     <div class="checkbox">
-                        <input id="options__age-checkbox--age-2" data-dimension="age" data-option="age-25-to-34" type="checkbox" name="age" value="age-25-to-34">
-                        <label for="options__age-checkbox--age-2">Age 25 to 34</label>
+                        <input id="options__age-checkbox--age-2" data-dimension="age" data-option="16-to-24" type="checkbox" name="age" value="16-to-24">
+                        <label id="age-16-to-24" for="options__age-checkbox--age-2">Age 16 to 24</label>
                     </div>
                     <div class="checkbox">
-                        <input id="options__age-checkbox--age-3" data-dimension="age" data-option="age-35-to-49" type="checkbox" name="age" value="age-35-to-49">
-                        <label for="options__age-checkbox--age-3">Age 35 to 49</label>
+                        <input id="options__age-checkbox--age-3" data-dimension="age" data-option="25-to-34" type="checkbox" name="age" value="25-to-34">
+                        <label id="age-25-to-34" for="options__age-checkbox--age-3">Age 25 to 34</label>
                     </div>
                     <div class="checkbox">
-                        <input id="options__age-checkbox--age-4" data-dimension="age" data-option="age-50-and-over" type="checkbox" name="age" value="age-50-and-over">
-                        <label for="options__age-checkbox--age-4">Age 50 and over</label>
+                        <input id="options__age-checkbox--age-4" data-dimension="age" data-option="35-to-49" type="checkbox" name="age" value="35-to-49">
+                        <label id="age-35-to-49" for="options__age-checkbox--age-4">Age 35 to 49</label>
+                    </div>
+                    <div class="checkbox">
+                        <input id="options__age-checkbox--age-5" data-dimension="age" data-option="50-and-over" type="checkbox" name="age" value="50-and-over">
+                        <label id="age-50-and-over" for="options__age-checkbox--age-5">Age 50 and over</label>
                     </div>
                     <button id="options__age-save" class="btn btn--primary btn--thick btn--wide btn--big margin-top--4 ">Save selection</button>
                 </form>
@@ -133,15 +137,15 @@
                         <legend class="visuallyhidden">Choose a residence type</legend>
                         <div class="checkbox">
                             <input id="options__residence-checkbox--total" data-dimension="residence" data-option="all" type="checkbox" name="residence" value="total">
-                            <label for="options__residence-checkbox--total">Household and communal combined</label>
+                            <label id="residence-all" for="options__residence-checkbox--total">Household and communal combined</label>
                         </div>
                         <div class="checkbox">
-                            <input id="options__residence-checkbox--household" data-dimension="residence" data-option="lives-in-a-household" type="checkbox" name="residence" value="household">
-                            <label for="options__residence-checkbox--household">Household</label>
+                            <input id="options__residence-checkbox--household" data-dimension="residence" data-option="household" type="checkbox" name="residence" value="household">
+                            <label id="residence-household" for="options__residence-checkbox--household">Household</label>
                         </div>
                         <div class="checkbox">
-                            <input id="options__residence-checkbox--communal" data-dimension="residence" data-option="lives-in-a-communal-establishment" type="checkbox" name="residence" value="communal">
-                            <label for="options__residence-checkbox--communal">Communal</label>
+                            <input id="options__residence-checkbox--communal" data-dimension="residence" data-option="communal" type="checkbox" name="residence" value="communal">
+                            <label id="residence-communal" for="options__residence-checkbox--communal">Communal</label>
                         </div>
                     </fieldset>
                     <button id="options__residence-save" class="btn btn--primary btn--thick btn--wide btn--big margin-top--4">Save selection</button>
