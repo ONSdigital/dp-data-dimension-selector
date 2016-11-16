@@ -12,8 +12,8 @@ var selected = JSON.parse(localStorage.getItem(test + '-selected')) || {
     },
     sex: {
         "all": true,
-        "male": true,
-        "female": true
+        "female": true,
+        "male": true
     },
     residence: {
         "all": true,
@@ -27,6 +27,8 @@ $('.js-change-sex').click( function() {
     var modalName = $(this).data('modal');
     setCheckBoxesInModal(modalName);
     openModal(modalName);
+    setSelectAllButton(modalName);
+    onCheckBoxChange(modalName);
 
     $('#options__sex-save').click(function(e) {
         e.preventDefault();
@@ -48,6 +50,8 @@ $('.js-change-age').click( function() {
     var modalName = $(this).data('modal');
     setCheckBoxesInModal(modalName);
     openModal(modalName);
+    setSelectAllButton(modalName);
+    onCheckBoxChange(modalName);
 
     $('#options__age-save').click(function(e) {
         e.preventDefault();
@@ -69,6 +73,8 @@ $('.js-change-residence').click( function() {
     var modalName = $(this).data('modal');
     setCheckBoxesInModal(modalName);
     openModal(modalName);
+    setSelectAllButton(modalName);
+    onCheckBoxChange(modalName);
 
     $('#options__residence-save').click(function(e) {
         e.preventDefault();
@@ -145,4 +151,40 @@ $(function(){
             }
         });
     });
+});
+
+function setSelectAllButton(modalClass) {
+    $('.options__' + modalClass).find('input').each( function() {
+        $('.js-select-all').hide();
+        $('.js-deselect-all').show();
+        if ($(this).prop('checked') != true) {
+            $('.js-select-all').show();
+            $('.js-deselect-all').hide();
+            return false;
+        }
+
+    });
+}
+
+function onCheckBoxChange(modalClass) {
+    $('input').on( "change", function() {
+        //alert( "Handler for .change() called." );
+        setSelectAllButton(modalClass)
+    });
+}
+
+$('.js-select-all').click(function() {
+    $(this).siblings('form').find('input').each( function() {
+        $(this).prop( "checked", true );
+    });
+    $('.js-select-all').hide();
+    $('.js-deselect-all').show();
+});
+
+$('.js-deselect-all').click(function() {
+    $(this).siblings('form').find('input').each( function() {
+        $(this).prop( "checked", false );
+    });
+    $('.js-select-all').show();
+    $('.js-deselect-all').hide();
 });
