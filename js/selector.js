@@ -19,6 +19,18 @@ var selected = JSON.parse(localStorage.getItem(test + '-selected')) || {
         "all": true,
         "household": true,
         "communal": true
+    },
+    time: {
+        "all": true,
+        "jan-1996": true,
+        "feb-1996": true,
+        "mar-1996": true,
+        "jan-1997": true,
+        "apr-1997": true,
+        "jun-1997": true,
+        "dec-1997": true,
+        "jan-1998": true,
+        "feb-1998": true
     }
 };
 
@@ -64,6 +76,29 @@ $('.js-change-age').click( function() {
 
         $('#options__age-save').off();
         $('.options__age').hide();
+    });
+
+});
+
+$('.js-change-time').click( function() {
+
+    var modalName = $(this).data('modal');
+    setCheckBoxesInModal(modalName);
+    openModal(modalName);
+    setSelectAllButton(modalName);
+    onCheckBoxChange(modalName);
+
+    $('#options__time-save').click(function(e) {
+        e.preventDefault();
+
+        $('.selected-' + modalName).empty();
+
+        getCheckBoxesInModal(modalName);
+
+        saveToLocalStorage();
+
+        $('#options__time-save').off();
+        $('.options__time').hide();
     });
 
 });
@@ -122,6 +157,13 @@ function getCheckBoxesInModal(modalClass) {
         var selectedList = $('.selected-' + modalClass);
         if ($(this).prop( "checked" )) {
             selected[dimension][option] = true;
+
+            //edge case for time with year
+            var yearPosixMatch = option.match(/-(\d\d\d\d)$/)
+            if (yearPosixMatch && yearPosixMatch.length > 0) {
+                labelText += ', ' + yearPosixMatch[1]
+            }
+
             selectedList.append(wrapInDiv(labelText));
         } else {
             selected[dimension][option] = false;
@@ -138,6 +180,7 @@ function saveToLocalStorage() {
     localStorage.setItem(test + '-selected', JSON.stringify(selected));
 }
 
+
 $(function(){
     $.each(selected, function(key, value) {
         //console.log(key, value);
@@ -146,6 +189,13 @@ $(function(){
             //console.log(childKey, childValue);
             if (childValue) {
                 var selectedText = $('#' + key + '-' + childKey).text();
+
+                //edge case for time with year
+                var yearPosixMatch = childKey.match(/-(\d\d\d\d)$/)
+                if (yearPosixMatch && yearPosixMatch.length > 0) {
+                    selectedText += ', ' + yearPosixMatch[1]
+                }
+
                 //console.log(selectedText);
                 selectedList.append(wrapInDiv(selectedText));
             }
