@@ -3,6 +3,9 @@ dp-data-dimension-selector
 
 Flat HTML prototypes for testing UI of dataset dimension selection and downloading 
 
+### Demo
+[onsdigital.github.io/dp-data-dimension-selector](https://onsdigital.github.io/dp-data-dimension-selector/)
+
 ### Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md) for details.
