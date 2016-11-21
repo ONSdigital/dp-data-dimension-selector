@@ -1,0 +1,56 @@
+{
+  "id": "D000123",
+  "name": "Geography",
+  "options": [
+    {
+      "id": "K04000001",
+      "name": "England and Wales",
+      "options": [
+        {
+          "id": "E92000001",
+          "name": "England",
+          "options": [
+            {
+              "id": "E12000001",
+              "name": "North East",
+              "options": [
+                {
+                  "id": "2000017",
+                  "name": "Hartlepool"
+                },
+                {
+                  "id": "2000018",
+                  "name": "Middlesbrough"
+                },
+                {
+                  "id": "2000019",
+                  "name": "Redcar and Cleveland"
+                },
+                {
+                  "id": "2000020",
+                  "name": "Stockton-on-Tees"
+                }
+              ]
+            },
+            {
+              "id": "E12000002",
+              "name": "North West"
+            },
+            {
+              "id": "E12000003",
+              "name": "Yorkshire and The Humber"
+            },
+            {
+              "id": "E12000004",
+              "name": "East Midlands"
+            }
+          ]
+        },
+        {
+          "id": "W92000004",
+          "name": "Wales"
+        }
+      ]
+    }
+  ]
+}
