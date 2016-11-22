@@ -27,12 +27,12 @@ $(function() {
         $('#cancel-changes').on('click', function (evt) {
             evt.preventDefault();
             redirectToPath('selector.html');
-        })
+        });
 
         $('#add-location').on('click', function (evt) {
             evt.preventDefault();
             renderSearchInput();
-        })
+        });
     };
 
     function renderSearchWidget() {
@@ -79,9 +79,8 @@ $(function() {
 
         $widget.find('.remove-btn').on('click', function (evt) {
             var $widget = $(this).closest('.ui-widget');
-            console.log($widget);
             var dataIndex = $widget.data('index');
-            vm.selectedLocations.splice[dataIndex];
+            vm.selectedLocations.splice(dataIndex, 1);
             $widget.remove();
         })
     }
