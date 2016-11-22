@@ -12,6 +12,21 @@ $(function() {
         bindHandlers();
     });
 
+    function bindHandlers() {
+        $('#apply-changes').on('click', function (evt) {
+            evt.preventDefault();
+            storeLocations();
+            console.log('applying');
+            throw new Error('Not implemented yet');
+            //redirectToPath('selector.html');
+        });
+
+        $('#cancel-changes').on('click', function (evt) {
+            evt.preventDefault();
+            redirectToPath('selector.html');
+        })
+    }
+
     function initAutocomplete() {
         $('input.location-search').autocomplete({
             source: function (request, response) {
@@ -25,6 +40,20 @@ $(function() {
                 console.log(vm.selectedLocations)
             }
         });
+    }
+
+    function storeLocations() {
+
+    }
+
+    function redirectToPath(path) {
+        var parts = window.location.href.split("/");
+        if (parts[parts.length - 1].length < 1) {
+            parts = parts.splice(parts.length - 1, 1);
+        }
+        parts[parts.length - 1] = path;
+        var href = parts.join("/");
+        window.location.href = href;
     }
 
     function fetchLocations(callback) {
