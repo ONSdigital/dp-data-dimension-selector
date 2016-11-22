@@ -1,16 +1,29 @@
 $(function() {
     var vm = {
         locationList: [],
-        locationData: null
+        locationData: null,
+        selectedLocations: [],
+        selectors: 1
     };
+
 
     fetchLocations(function () {
         initAutocomplete();
+        bindHandlers();
     });
 
     function initAutocomplete() {
         $('input.location-search').autocomplete({
-            source: vm.locationList
+            source: function (request, response) {
+                response(vm.locationList.filter(function (item) {
+                    return vm.selectedLocations.indexOf(item.id) === -1
+                }))
+            },
+            select: function( event, ui ) {
+                var dataIndex = $(this).parent('.ui-widget').data("index");
+                vm.selectedLocations[dataIndex] = ui.item.id;
+                console.log(vm.selectedLocations)
+            }
         });
     }
 
@@ -20,6 +33,10 @@ $(function() {
             vm.locationList = flattenLocationTree(response);
             callback();
         });
+    }
+
+    function addSelector() {
+
     }
 
     function flattenLocationTree(data) {
