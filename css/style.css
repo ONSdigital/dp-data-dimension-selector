@@ -3,18 +3,6 @@
     line-height: 28px;
 }
 
-body {
-    padding-bottom: 125px;
-}
-
-.print--hide {
-    height: 125px;
-    bottom: 0;
-    position: absolute;
-    margin: 0 auto;
-    width: 100%;
-}
-
 .btn--big {
     font-size: 17px;
     font-weight: 600;
