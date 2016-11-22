@@ -71,7 +71,7 @@ $(function() {
                 }))
             },
             select: function( event, ui ) {
-                var dataIndex = $(this).parent('.ui-widget').data("index");
+                var dataIndex = $(this).closest('.ui-widget').data("index");
                 vm.selectedLocations[dataIndex] = ui.item.id;
                 console.log(vm.selectedLocations)
             }
