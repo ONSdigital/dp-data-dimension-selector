@@ -1,7 +1,7 @@
-var test = $('body').data('test');
-console.log ('Viewing test: ', test);
+var dataset = $('body').data('dataset');
+console.log ('Viewing dataset: ', dataset);
 
-var selected = JSON.parse(localStorage.getItem(test + '-selected')) || {
+var selected = JSON.parse(localStorage.getItem(dataset + '-selected')) || {
     age: {
         "all": true,
         "16-and-over": true,
@@ -19,8 +19,13 @@ var selected = JSON.parse(localStorage.getItem(test + '-selected')) || {
         "all": true,
         "household": true,
         "communal": true
+    },
+    locations: {
+        "K04000001": true // England and Wales
     }
 };
+
+var locationList = [];
 
 $('.js-change-sex').click( function() {
 
@@ -97,6 +102,61 @@ $('.js-close-modal').click(function(e) {
     $('.options__' + modalName).hide();
 });
 
+// init
+$(function(){
+    fetchLocations(function () {
+        populateData();
+    });
+});
+
+function populateData() {
+    $.each(selected, function(key, value) {
+
+        var selectedList = $('.selected-' + key);
+        $.each(value, function(childKey, childValue) {
+            if (childValue) {
+                var selectedText = '';
+                switch (key) {
+                    case 'locations':
+                        var location = locationList.find(function (location) {
+                            return location.id === childKey
+                        });
+                        selectedText = location.name;
+                        break;
+                    default:
+                        selectedText = $('#' + key + '-' + childKey).text();
+                        break;
+                }
+                selectedList.append(wrapInDiv(selectedText));
+            }
+        });
+    });
+    saveToLocalStorage();
+}
+function fetchLocations(callback) {
+    $.get('data/locations.json', function(response) {
+        locationList = flattenLocationTree(response);
+        callback();
+    });
+}
+
+function flattenLocationTree(data) {
+
+    var list = [];
+    var opts = data.options || [];
+
+    list.push({
+        id: data.id,
+        name: data.name
+    });
+
+    opts.forEach(function(item) {
+        list = list.concat(flattenLocationTree(item));
+    });
+
+    return list;
+}
+
 function openModal(modalClass) {
     $('.options__' + modalClass).show();
 }
@@ -123,7 +183,7 @@ function getCheckBoxesInModal(modalClass) {
         if ($(this).prop( "checked" )) {
             selected[dimension][option] = true;
 
-            //edge case for time with year
+            // special case for date selector
             var yearPosixMatch = option.match(/-(\d\d\d\d)$/)
             if (yearPosixMatch && yearPosixMatch.length > 0) {
                 labelText += ', ' + yearPosixMatch[1]
@@ -142,31 +202,8 @@ function wrapInDiv(text) {
 }
 
 function saveToLocalStorage() {
-    localStorage.setItem(test + '-selected', JSON.stringify(selected));
+    localStorage.setItem(dataset + '-selected', JSON.stringify(selected));
 }
-
-
-$(function(){
-    $.each(selected, function(key, value) {
-        //console.log(key, value);
-        var selectedList = $('.selected-' + key);
-        $.each(value, function(childKey, childValue) {
-            //console.log(childKey, childValue);
-            if (childValue) {
-                var selectedText = $('#' + key + '-' + childKey).text();
-
-                //edge case for time with year
-                var yearPosixMatch = childKey.match(/-(\d\d\d\d)$/)
-                if (yearPosixMatch && yearPosixMatch.length > 0) {
-                    selectedText += ', ' + yearPosixMatch[1]
-                }
-
-                //console.log(selectedText);
-                selectedList.append(wrapInDiv(selectedText));
-            }
-        });
-    });
-});
 
 function setSelectAllButton(modalClass) {
     $('.options__' + modalClass).find('input').each( function() {

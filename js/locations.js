@@ -1,5 +1,7 @@
 $(function() {
 
+    var dataset = $('body').data('dataset');
+
     var vm = {
         locationList: [],
         locationData: null,
@@ -18,10 +20,8 @@ $(function() {
     function bindHandlers() {
         $('#apply-changes').on('click', function (evt) {
             evt.preventDefault();
-            storeLocations();
-
-            console.error('Applying changes not implemented yet');
-            //redirectToPath('selector.html');
+            saveToLocalStorage();
+            redirectToPath('selector.html');
         });
 
         $('#cancel-changes').on('click', function (evt) {
@@ -33,7 +33,7 @@ $(function() {
             evt.preventDefault();
             renderSearchInput();
         });
-    };
+    }
 
     function renderSearchWidget() {
         var widget = $('#widget').replaceWith(`
@@ -85,11 +85,6 @@ $(function() {
         })
     }
 
-
-    function storeLocations() {
-        console.error('Storing locations not implemented yet');
-    }
-
     function redirectToPath(path) {
         var parts = window.location.href.split("/");
         if (parts[parts.length - 1].length < 1) {
@@ -108,10 +103,6 @@ $(function() {
         });
     }
 
-    function addSelector() {
-
-    }
-
     function flattenLocationTree(data) {
 
         var list = [];
@@ -123,9 +114,20 @@ $(function() {
         });
 
         opts.forEach(function(item) {
-            list = list.concat(flattenLocationTree(item))
+            list = list.concat(flattenLocationTree(item));
         });
 
-        return list
+        return list;
     }
+
+    function saveToLocalStorage() {
+        var lsKey = dataset + '-selected';
+        var data = JSON.parse(localStorage.getItem(lsKey)) || {};
+        data.locations = {};
+        vm.selectedLocations.forEach(function (code) {
+            data.locations[code] = true; // why? check selector.js JQuery onReady block
+        });
+        localStorage.setItem(lsKey, JSON.stringify(data));
+    }
+
 });
