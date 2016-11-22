@@ -1,23 +1,26 @@
 $(function() {
+
     var vm = {
         locationList: [],
         locationData: null,
-        selectedLocations: [],
-        selectors: 1
+        selectedLocations: []
     };
 
+    // initialize
 
+    renderSearchWidget();
+    renderSearchInput();
     fetchLocations(function () {
-        initAutocomplete();
         bindHandlers();
     });
+
 
     function bindHandlers() {
         $('#apply-changes').on('click', function (evt) {
             evt.preventDefault();
             storeLocations();
-            console.log('applying');
-            throw new Error('Not implemented yet');
+
+            console.error('Applying changes not implemented yet');
             //redirectToPath('selector.html');
         });
 
@@ -25,10 +28,43 @@ $(function() {
             evt.preventDefault();
             redirectToPath('selector.html');
         })
-    }
 
-    function initAutocomplete() {
-        $('input.location-search').autocomplete({
+        $('#add-location').on('click', function (evt) {
+            evt.preventDefault();
+            renderSearchInput();
+        })
+    };
+
+    function renderSearchWidget() {
+        var widget = $('#widget').replaceWith(`
+            <div id="widget" class="widget-search wrapper">
+                <!-- dynamic search inputs -->
+                <div class="col margin-top--double widget-footer">                
+                    <a id="add-location">Add another location</a>
+                </div>
+            </div>
+        `)
+    }
+    
+    function renderSearchInput() {
+        var index = vm.selectedLocations.length;
+        var $widget = $('#widget')
+
+        $widget.find('> .widget-footer:last-child').before(`
+            <div class="wrapper margin-top--half ui-widget" data-index="${index}">
+                <div class="col col--md-one-third col--lg-one-third">
+                    <label class="font-size--17">Location name</label>
+                </div>
+                <div class="col col--md-one-third col--lg-one-third">
+                    <a class="remove-btn">Remove</a>
+                </div>
+                <div class="col">
+                    <input class="location-search">
+                </div>                
+            </div>        
+        `);
+
+        $widget.find('input.location-search').autocomplete({
             source: function (request, response) {
                 response(vm.locationList.filter(function (item) {
                     return vm.selectedLocations.indexOf(item.id) === -1
@@ -40,10 +76,19 @@ $(function() {
                 console.log(vm.selectedLocations)
             }
         });
+
+        $widget.find('.remove-btn').on('click', function (evt) {
+            var $widget = $(this).closest('.ui-widget');
+            console.log($widget);
+            var dataIndex = $widget.data('index');
+            vm.selectedLocations.splice[dataIndex];
+            $widget.remove();
+        })
     }
 
-    function storeLocations() {
 
+    function storeLocations() {
+        console.error('Storing locations not implemented yet');
     }
 
     function redirectToPath(path) {
