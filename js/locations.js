@@ -48,7 +48,7 @@ $(function() {
     
     function renderSearchInput() {
         var index = vm.selectedLocations.length;
-        var $widget = $('#widget')
+        var $widget = $('#widget');
 
         $widget.find('> .widget-footer:last-child').before(`
             <div class="wrapper margin-top--half ui-widget" data-index="${index}">
