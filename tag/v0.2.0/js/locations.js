@@ -1,19 +1,25 @@
 $(function() {
 
     var dataset = $('body').data('dataset');
-
     var vm = {
         locationList: [],
         locationData: null,
-        selectedLocations: []
+        selectedLocations: [],
+        storedData: localStorage.getItem(dataset + '-selected')
     };
+
+    vm.selectedLocations = vm.storedData ? Object.keys(JSON.parse(vm.storedData).locations) : ["K04000001"];
 
     // initialize
 
     renderSearchWidget();
-    renderSearchInput();
     fetchLocations(function () {
         bindHandlers();
+        vm.selectedLocations.forEach(function (locationId) {
+           renderSearchInput(vm.locationList.find(function (location) {
+               return location.id === locationId
+           }));
+        });
     });
 
 
@@ -46,8 +52,10 @@ $(function() {
         `)
     }
     
-    function renderSearchInput() {
-        var index = vm.selectedLocations.length;
+    function renderSearchInput(location) {
+
+        var locationName = location ? location.value : '';
+        var index = location ? vm.selectedLocations.indexOf(location.id) : vm.selectedLocations.length;
         var $widget = $('#widget');
 
         $widget.find('> .widget-footer:last-child').before(`
@@ -59,7 +67,7 @@ $(function() {
                     <a class="remove-btn">Remove</a>
                 </div>
                 <div class="col">
-                    <input class="location-search">
+                    <input class="location-search" value="${locationName}">
                 </div>                
             </div>        
         `);
@@ -73,7 +81,6 @@ $(function() {
             select: function( event, ui ) {
                 var dataIndex = $(this).closest('.ui-widget').data("index");
                 vm.selectedLocations[dataIndex] = ui.item.id;
-                console.log(vm.selectedLocations)
             }
         });
 
@@ -82,6 +89,7 @@ $(function() {
             var dataIndex = $widget.data('index');
             vm.selectedLocations.splice(dataIndex, 1);
             $widget.remove();
+            saveToLocalStorage();
         })
     }
 
@@ -121,13 +129,13 @@ $(function() {
     }
 
     function saveToLocalStorage() {
-        var lsKey = dataset + '-selected';
-        var data = JSON.parse(localStorage.getItem(lsKey)) || {};
+        var storageKey = dataset + '-selected';
+        var data = JSON.parse(localStorage.getItem(storageKey)) || {};
         data.locations = {};
         vm.selectedLocations.forEach(function (code) {
             data.locations[code] = true; // why? check selector.js JQuery onReady block
         });
-        localStorage.setItem(lsKey, JSON.stringify(data));
+        localStorage.setItem(storageKey, JSON.stringify(data));
     }
 
 });
