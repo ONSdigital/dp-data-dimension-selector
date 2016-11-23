@@ -72,6 +72,8 @@ $(function() {
             </div>        
         `);
 
+        updateRemoveBtnsVisibility();
+
         $widget.find('input.location-search').autocomplete({
             source: function (request, response) {
                 response(vm.locationList.filter(function (item) {
@@ -92,7 +94,8 @@ $(function() {
             vm.selectedLocations.splice(dataIndex, 1);
             $widget.remove();
             saveToLocalStorage();
-        })
+            updateRemoveBtnsVisibility();
+        });
     }
 
     function redirectToPath(path) {
@@ -140,4 +143,8 @@ $(function() {
         localStorage.setItem(storageKey, JSON.stringify(data));
     }
 
+    function updateRemoveBtnsVisibility() {
+        $btns = $('.ui-widget .remove-btn');
+        $btns.toggleClass('hidden', $btns.length === 1);
+    }
 });
