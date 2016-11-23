@@ -12,18 +12,17 @@ $(function() {
 
     // initialize
 
+    bindTopLevelHandlers();
     renderSearchWidget();
     fetchLocations(function () {
-        bindHandlers();
         vm.selectedLocations.forEach(function (locationId) {
-           renderSearchInput(vm.locationList.find(function (location) {
-               return location.id === locationId
-           }));
+            renderSearchInput(vm.locationList.find(function (location) {
+                return location.id === locationId
+            }));
         });
     });
 
-
-    function bindHandlers() {
+    function bindTopLevelHandlers() {
         $('#apply-changes').on('click', function (evt) {
             evt.preventDefault();
             saveToLocalStorage();
@@ -33,11 +32,6 @@ $(function() {
         $('#cancel-changes').on('click', function (evt) {
             evt.preventDefault();
             redirectToPath('selector.html');
-        });
-
-        $('#add-location').on('click', function (evt) {
-            evt.preventDefault();
-            renderSearchInput();
         });
     }
 
@@ -49,7 +43,12 @@ $(function() {
                     <a id="add-location">Add another location</a>
                 </div>
             </div>
-        `)
+        `);
+
+        $('#add-location').on('click', function (evt) {
+            evt.preventDefault();
+            renderSearchInput();
+        });
     }
     
     function renderSearchInput(location) {
