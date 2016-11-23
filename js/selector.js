@@ -28,6 +28,10 @@ $(function() {
 
     var locationList = [];
 
+    fetchLocations(function () {
+        populateData();
+    });
+
     $('.js-change-sex').click(function () {
 
         var modalName = $(this).data('modal');
@@ -40,9 +44,7 @@ $(function() {
             e.preventDefault();
 
             $('.selected-' + modalName).empty();
-
             getCheckBoxesInModal(modalName);
-
             saveToLocalStorage();
 
             $('#options__sex-save').off();
@@ -63,9 +65,7 @@ $(function() {
             e.preventDefault();
 
             $('.selected-' + modalName).empty();
-
             getCheckBoxesInModal(modalName);
-
             saveToLocalStorage();
 
             $('#options__age-save').off();
@@ -86,15 +86,12 @@ $(function() {
             e.preventDefault();
 
             $('.selected-' + modalName).empty();
-
             getCheckBoxesInModal(modalName);
-
             saveToLocalStorage();
 
             $('#options__residence-save').off();
             $('.options__residence').hide();
         });
-
     });
 
     $('.js-close-modal').click(function (e) {
@@ -103,12 +100,6 @@ $(function() {
         $('.options__' + modalName).hide();
     });
 
-    // init
-    $(function () {
-        fetchLocations(function () {
-            populateData();
-        });
-    });
 
     function populateData() {
         $.each(selected, function (key, value) {
@@ -120,7 +111,7 @@ $(function() {
                     switch (key) {
                         case 'locations':
                             var location = locationList.find(function (location) {
-                                return location.id === childKey
+                                return location.id === childKey;
                             });
                             selectedText = location.name;
                             break;
@@ -168,9 +159,9 @@ $(function() {
             var option = $(this).data('option');
             var dimension = $(this).data('dimension');
             if (selected[dimension][option]) {
-                $(this).prop("checked", true)
+                $(this).prop("checked", true);
             } else {
-                $(this).prop("checked", false)
+                $(this).prop("checked", false);
             }
 
         });
@@ -186,7 +177,7 @@ $(function() {
                 selected[dimension][option] = true;
 
                 // special case for date selector
-                var yearPosixMatch = option.match(/-(\d\d\d\d)$/)
+                var yearPosixMatch = option.match(/-(\d\d\d\d)$/);
                 if (yearPosixMatch && yearPosixMatch.length > 0) {
                     labelText += ', ' + yearPosixMatch[1]
                 }
@@ -222,8 +213,7 @@ $(function() {
 
     function onCheckBoxChange(modalClass) {
         $('input').on("change", function () {
-            //alert( "Handler for .change() called." );
-            setSelectAllButton(modalClass)
+            setSelectAllButton(modalClass);
         });
     }
 
