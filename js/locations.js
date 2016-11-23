@@ -75,7 +75,9 @@ $(function() {
         $widget.find('input.location-search').autocomplete({
             source: function (request, response) {
                 response(vm.locationList.filter(function (item) {
-                    return vm.selectedLocations.indexOf(item.id) === -1
+                    var notSelected = vm.selectedLocations.indexOf(item.id) === -1;
+                    var containsTerm = item.value.indexOf(request.term) > -1;
+                    return notSelected && containsTerm;
                 }))
             },
             select: function( event, ui ) {
