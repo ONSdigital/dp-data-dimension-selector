@@ -1,242 +1,245 @@
-var dataset = $('body').data('dataset');
-console.log ('Viewing dataset: ', dataset);
+$(function() {
+    var dataset = $('body').data('dataset');
+    console.log('Viewing dataset: ', dataset);
 
-var selected = JSON.parse(localStorage.getItem(dataset + '-selected')) || {
-    age: {
-        "all": true,
-        "16-and-over": true,
-        "16-to-24": true,
-        "25-to-34": true,
-        "35-to-49": true,
-        "50-and-over": true
-    },
-    sex: {
-        "all": true,
-        "female": true,
-        "male": true
-    },
-    residence: {
-        "all": true,
-        "household": true,
-        "communal": true
-    },
-    locations: {
-        "K04000001": true // England and Wales
-    }
-};
-
-var locationList = [];
-
-$('.js-change-sex').click( function() {
-
-    var modalName = $(this).data('modal');
-    setCheckBoxesInModal(modalName);
-    openModal(modalName);
-    setSelectAllButton(modalName);
-    onCheckBoxChange(modalName);
-
-    $('#options__sex-save').click(function(e) {
-        e.preventDefault();
-
-        $('.selected-' + modalName).empty();
-
-        getCheckBoxesInModal(modalName);
-
-        saveToLocalStorage();
-
-        $('#options__sex-save').off();
-        $('.options__sex').hide();
-    });
-
-});
-
-$('.js-change-age').click( function() {
-
-    var modalName = $(this).data('modal');
-    setCheckBoxesInModal(modalName);
-    openModal(modalName);
-    setSelectAllButton(modalName);
-    onCheckBoxChange(modalName);
-
-    $('#options__age-save').click(function(e) {
-        e.preventDefault();
-
-        $('.selected-' + modalName).empty();
-
-        getCheckBoxesInModal(modalName);
-
-        saveToLocalStorage();
-
-        $('#options__age-save').off();
-        $('.options__age').hide();
-    });
-
-});
-
-$('.js-change-residence').click( function() {
-
-    var modalName = $(this).data('modal');
-    setCheckBoxesInModal(modalName);
-    openModal(modalName);
-    setSelectAllButton(modalName);
-    onCheckBoxChange(modalName);
-
-    $('#options__residence-save').click(function(e) {
-        e.preventDefault();
-
-        $('.selected-' + modalName).empty();
-
-        getCheckBoxesInModal(modalName);
-
-        saveToLocalStorage();
-
-        $('#options__residence-save').off();
-        $('.options__residence').hide();
-    });
-
-});
-
-$('.js-close-modal').click(function(e) {
-    e.preventDefault();
-    var modalName = $(this).data('modal');
-    $('.options__' + modalName).hide();
-});
-
-// init
-$(function(){
-    fetchLocations(function () {
-        populateData();
-    });
-});
-
-function populateData() {
-    $.each(selected, function(key, value) {
-
-        var selectedList = $('.selected-' + key);
-        $.each(value, function(childKey, childValue) {
-            if (childValue) {
-                var selectedText = '';
-                switch (key) {
-                    case 'locations':
-                        var location = locationList.find(function (location) {
-                            return location.id === childKey
-                        });
-                        selectedText = location.name;
-                        break;
-                    default:
-                        selectedText = $('#' + key + '-' + childKey).text();
-                        break;
-                }
-                selectedList.append(wrapInDiv(selectedText));
+    var selected = JSON.parse(localStorage.getItem(dataset + '-selected')) || {
+            age: {
+                "all": true,
+                "16-and-over": true,
+                "16-to-24": true,
+                "25-to-34": true,
+                "35-to-49": true,
+                "50-and-over": true
+            },
+            sex: {
+                "all": true,
+                "female": true,
+                "male": true
+            },
+            residence: {
+                "all": true,
+                "household": true,
+                "communal": true
+            },
+            locations: {
+                "K04000001": true // England and Wales
             }
+        };
+
+    var locationList = [];
+
+    $('.js-change-sex').click(function () {
+
+        var modalName = $(this).data('modal');
+        setCheckBoxesInModal(modalName);
+        openModal(modalName);
+        setSelectAllButton(modalName);
+        onCheckBoxChange(modalName);
+
+        $('#options__sex-save').click(function (e) {
+            e.preventDefault();
+
+            $('.selected-' + modalName).empty();
+
+            getCheckBoxesInModal(modalName);
+
+            saveToLocalStorage();
+
+            $('#options__sex-save').off();
+            $('.options__sex').hide();
+        });
+
+    });
+
+    $('.js-change-age').click(function () {
+
+        var modalName = $(this).data('modal');
+        setCheckBoxesInModal(modalName);
+        openModal(modalName);
+        setSelectAllButton(modalName);
+        onCheckBoxChange(modalName);
+
+        $('#options__age-save').click(function (e) {
+            e.preventDefault();
+
+            $('.selected-' + modalName).empty();
+
+            getCheckBoxesInModal(modalName);
+
+            saveToLocalStorage();
+
+            $('#options__age-save').off();
+            $('.options__age').hide();
+        });
+
+    });
+
+    $('.js-change-residence').click(function () {
+
+        var modalName = $(this).data('modal');
+        setCheckBoxesInModal(modalName);
+        openModal(modalName);
+        setSelectAllButton(modalName);
+        onCheckBoxChange(modalName);
+
+        $('#options__residence-save').click(function (e) {
+            e.preventDefault();
+
+            $('.selected-' + modalName).empty();
+
+            getCheckBoxesInModal(modalName);
+
+            saveToLocalStorage();
+
+            $('#options__residence-save').off();
+            $('.options__residence').hide();
+        });
+
+    });
+
+    $('.js-close-modal').click(function (e) {
+        e.preventDefault();
+        var modalName = $(this).data('modal');
+        $('.options__' + modalName).hide();
+    });
+
+    // init
+    $(function () {
+        fetchLocations(function () {
+            populateData();
         });
     });
-    saveToLocalStorage();
-}
-function fetchLocations(callback) {
-    $.get('data/locations.json', function(response) {
-        locationList = flattenLocationTree(response);
-        callback();
-    });
-}
 
-function flattenLocationTree(data) {
+    function populateData() {
+        $.each(selected, function (key, value) {
 
-    var list = [];
-    var opts = data.options || [];
+            var selectedList = $('.selected-' + key);
+            $.each(value, function (childKey, childValue) {
+                if (childValue) {
+                    var selectedText = '';
+                    switch (key) {
+                        case 'locations':
+                            var location = locationList.find(function (location) {
+                                return location.id === childKey
+                            });
+                            selectedText = location.name;
+                            break;
+                        default:
+                            selectedText = $('#' + key + '-' + childKey).text();
+                            break;
+                    }
+                    selectedList.append(wrapInDiv(selectedText));
+                }
+            });
+        });
+        saveToLocalStorage();
+    }
 
-    list.push({
-        id: data.id,
-        name: data.name
-    });
+    function fetchLocations(callback) {
+        $.get('data/locations.json', function (response) {
+            locationList = flattenLocationTree(response);
+            callback();
+        });
+    }
 
-    opts.forEach(function(item) {
-        list = list.concat(flattenLocationTree(item));
-    });
+    function flattenLocationTree(data) {
 
-    return list;
-}
+        var list = [];
+        var opts = data.options || [];
 
-function openModal(modalClass) {
-    $('.options__' + modalClass).show();
-}
+        list.push({
+            id: data.id,
+            name: data.name
+        });
 
-function setCheckBoxesInModal(modalClass) {
-    $('.options__' + modalClass).find('input').each( function() {
-        var option = $(this).data('option');
-        var dimension = $(this).data('dimension');
-        if (selected[dimension][option]) {
-            $(this).prop( "checked", true )
-        } else {
-            $(this).prop( "checked", false )
-        }
+        opts.forEach(function (item) {
+            list = list.concat(flattenLocationTree(item));
+        });
 
-    });
-}
+        return list;
+    }
 
-function getCheckBoxesInModal(modalClass) {
-    $('.options__' + modalClass).find('input').each( function() {
-        var option = $(this).data('option');
-        var dimension = $(this).data('dimension');
-        var labelText = $(this).next().text();
-        var selectedList = $('.selected-' + modalClass);
-        if ($(this).prop( "checked" )) {
-            selected[dimension][option] = true;
+    function openModal(modalClass) {
+        $('.options__' + modalClass).show();
+    }
 
-            // special case for date selector
-            var yearPosixMatch = option.match(/-(\d\d\d\d)$/)
-            if (yearPosixMatch && yearPosixMatch.length > 0) {
-                labelText += ', ' + yearPosixMatch[1]
+    function setCheckBoxesInModal(modalClass) {
+        $('.options__' + modalClass).find('input').each(function () {
+            var option = $(this).data('option');
+            var dimension = $(this).data('dimension');
+            if (selected[dimension][option]) {
+                $(this).prop("checked", true)
+            } else {
+                $(this).prop("checked", false)
             }
 
-            selectedList.append(wrapInDiv(labelText));
-        } else {
-            selected[dimension][option] = false;
-        }
+        });
+    }
 
-    });
-}
+    function getCheckBoxesInModal(modalClass) {
+        $('.options__' + modalClass).find('input').each(function () {
+            var option = $(this).data('option');
+            var dimension = $(this).data('dimension');
+            var labelText = $(this).next().text();
+            var selectedList = $('.selected-' + modalClass);
+            if ($(this).prop("checked")) {
+                selected[dimension][option] = true;
 
-function wrapInDiv(text) {
-    return $('<div class="selected__item">' + text + '</div>');
-}
+                // special case for date selector
+                var yearPosixMatch = option.match(/-(\d\d\d\d)$/)
+                if (yearPosixMatch && yearPosixMatch.length > 0) {
+                    labelText += ', ' + yearPosixMatch[1]
+                }
 
-function saveToLocalStorage() {
-    localStorage.setItem(dataset + '-selected', JSON.stringify(selected));
-}
+                selectedList.append(wrapInDiv(labelText));
+            } else {
+                selected[dimension][option] = false;
+            }
 
-function setSelectAllButton(modalClass) {
-    $('.options__' + modalClass).find('input').each( function() {
+        });
+    }
+
+    function wrapInDiv(text) {
+        return $('<div class="selected__item">' + text + '</div>');
+    }
+
+    function saveToLocalStorage() {
+        localStorage.setItem(dataset + '-selected', JSON.stringify(selected));
+    }
+
+    function setSelectAllButton(modalClass) {
+        $('.options__' + modalClass).find('input').each(function () {
+            $('.js-select-all').hide();
+            $('.js-deselect-all').show();
+            if ($(this).prop('checked') != true) {
+                $('.js-select-all').show();
+                $('.js-deselect-all').hide();
+                return false;
+            }
+
+        });
+    }
+
+    function onCheckBoxChange(modalClass) {
+        $('input').on("change", function () {
+            //alert( "Handler for .change() called." );
+            setSelectAllButton(modalClass)
+        });
+    }
+
+    $('.js-select-all').click(function () {
+        $(this).siblings('form').find('input').each(function () {
+            $(this).prop("checked", true);
+        });
         $('.js-select-all').hide();
         $('.js-deselect-all').show();
-        if ($(this).prop('checked') != true) {
-            $('.js-select-all').show();
-            $('.js-deselect-all').hide();
-            return false;
-        }
-
     });
-}
 
-function onCheckBoxChange(modalClass) {
-    $('input').on( "change", function() {
-        //alert( "Handler for .change() called." );
-        setSelectAllButton(modalClass)
+    $('.js-deselect-all').click(function () {
+        $(this).siblings('form').find('input').each(function () {
+            $(this).prop("checked", false);
+        });
+        $('.js-select-all').show();
+        $('.js-deselect-all').hide();
     });
-}
-
-$('.js-select-all').click(function() {
-    $(this).siblings('form').find('input').each( function() {
-        $(this).prop( "checked", true );
-    });
-    $('.js-select-all').hide();
-    $('.js-deselect-all').show();
-});
-
-$('.js-deselect-all').click(function() {
-    $(this).siblings('form').find('input').each( function() {
-        $(this).prop( "checked", false );
-    });
-    $('.js-select-all').show();
-    $('.js-deselect-all').hide();
 });
