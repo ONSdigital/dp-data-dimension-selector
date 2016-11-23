@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Test 2 | Members of the Armed Forces by residence type by sex by age | Office for National Statistics</title>
+    <title>Test 1 | Members of the Armed Forces by residence type by sex by age | Office for National Statistics</title>
     <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/00c4260/css/main.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
 
     </style>
 </head>
-<body data-test="test-2">
+
+<body data-dataset="armed-forces">
 
 <nav class="height--9 border-bottom--gallery-md">
     <div class="wrapper">
@@ -45,9 +46,9 @@
                     </div>
                 </li>
                 <li class="margin-left--0 padding-bottom--2 border-bottom--gallery-md col-wrap width-lg--39">
-                <div class="col col--md-8 col--lg-8">
-                    <strong>Sex</strong>
-                </div>
+                    <div class="col col--md-8 col--lg-8">
+                        <strong>Sex</strong>
+                    </div>
                     <div class="col col--md-34 col--lg-26">
                         <div class="selected-sex"></div>
                     </div>
@@ -64,6 +65,18 @@
                     </div>
                     <div class="col col--md-5 col--lg-5">
                         <a class="js-change-residence float-right" data-modal="residence">Change</a>
+                    </div>
+                </li>
+                <li class="margin-left--0 padding-bottom--2 border-bottom--gallery-md col-wrap width-lg--39">
+                    <div class="col col--md-8 col--lg-8">
+                        <strong>Location</strong>
+                    </div>
+                    <div class="col col--md-34 col--lg-26">
+                        <div class="selected-locations"></div>
+                    </div>
+                    <div class="col col--md-5 col--lg-5">
+                        <!--<a class="js-change-location float-right" data-modal="location">Change</a>-->
+                        <a class="js-change-location float-right" href="location.html">Change</a>
                     </div>
                 </li>
             </ul>
@@ -180,7 +193,7 @@
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous">
 </script>
-<script src="../js/selector.js" type="text/javascript"></script>
+<script src="js/selector.js" type="text/javascript"></script>
 
 <script>
 
