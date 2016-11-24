@@ -23,8 +23,7 @@
         var $foldable = $(settings.template);
 
         var $header = $foldable.children(".foldable-header");
-        $header.on('click', function (evt) {
-            evt.preventDefault();
+        $header.on('click', function () {
             settings.expanded = !settings.expanded;
             $(this).closest('.foldable').toggleClass('expanded', settings.expanded);
         });

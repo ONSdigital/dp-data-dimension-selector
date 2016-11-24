@@ -1,11 +1,19 @@
+.widget-browse  > .foldable-container {
+    margin-left: 16px !important;
+}
+
 .foldable-container {
     border-top: 2px solid #DEDEDE;
-    margin: 10px 0;
-    padding: 15px 0;
+    margin: 10px 0 0;
+    padding: 15px 0 0;
 }
 
 .foldable-container:last-child {
     border-bottom: 2px solid #DEDEDE;
+}
+
+.foldable-container .foldable-container:last-child {
+    border-bottom: none;
 }
 
 .foldable  > .foldable-header {
@@ -17,10 +25,11 @@
 .foldable  > .foldable-header h3,
 .foldable  > .foldable-header h4,
 .foldable  > .foldable-header h5 {
-    margin: 0; padding: 0;
+    margin: 10px 0 10px; padding: 0;
 }
 
 .foldable  > .foldable-body {
+    margin-top: 20px;
     display: block;
 }
 
@@ -28,3 +37,12 @@
     display: none;
 }
 
+.checkbox label {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}

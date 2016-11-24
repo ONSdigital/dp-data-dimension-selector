@@ -127,11 +127,12 @@ $(function() {
         $('a.browse-locations').toggleClass('hidden', true);
     }
 
-    function renderFoldableSearchSelector(location, $node) {
+    function renderFoldableSearchSelector(location, $node, depth) {
+        var depth = depth !== undefined ? depth :  0;
         var $selector = $('<div class="foldable-container"></div>');
-        console.log(location);
+
         $selector.foldable({
-            labelHtml: `<h3>${location.name} (${location.id})</h3>`,
+            labelHtml: generateLocationHeader(location, depth),
             contentHtml: "",
             replace: true
         });
@@ -143,9 +144,46 @@ $(function() {
 
         var $body = $selector.find('.foldable-body');
 
+        depth ++;
         location.options.forEach(function (locObj) {
-            renderFoldableSearchSelector(locObj, $body);
+            if (depth < 3) {
+                renderFoldableSearchSelector(locObj, $body, depth);
+            } else {
+                $body.append($('<div class="col-wrap"></div>').append(generateLocationCheckBox(locObj)));
+            }
         });
+    }
+
+    function generateLocationHeader(location, depth) {
+        var fontClass = '';
+
+        switch (depth) {
+            case 0:
+                fontClass = 'font-size--24 strong';
+                break;
+            case 1:
+                fontClass ='font-size--21 strong';
+                break;
+            case 2:
+                fontClass ='font-size--17 strong';
+                break;
+        }
+
+        return [
+            $('<h3>' + location.name + '</h3>').addClass(fontClass),
+            $('<div class="col-wrap"></div>').append(generateLocationCheckBox(location))
+        ];
+    }
+
+    function generateLocationCheckBox(location) {
+        return $(`
+            <div class="col col--md-one-third col--lg-one-third margin-bottom--half">
+                <div class="checkbox inline-block">
+                    <input id="location-${location.id}" data-value="${location.id}" type="checkbox">
+                    <label for="location-${location.id}">${location.name}</label>
+                </div>
+            </div>
+        `);
     }
 
     function redirectToPath(path) {
