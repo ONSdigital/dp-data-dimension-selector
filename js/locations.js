@@ -10,17 +10,12 @@ $(function() {
 
     vm.selectedLocations = vm.storedData ? Object.keys(JSON.parse(vm.storedData).locations) : ["K04000001"];
 
-    // initialize
-
-    bindTopLevelHandlers();
-    renderSearchWidget();
-    fetchLocations(function () {
-        vm.selectedLocations.forEach(function (locationId) {
-            renderSearchInput(vm.locationList.find(function (location) {
-                return location.id === locationId
-            }));
+    (function init() {
+        bindTopLevelHandlers();
+        fetchLocations(function () {
+            renderSearchWidget();
         });
-    });
+    })();
 
     function bindTopLevelHandlers() {
         $('#apply-changes').on('click', function (evt) {
@@ -33,6 +28,16 @@ $(function() {
             evt.preventDefault();
             redirectToPath('selector.html');
         });
+
+        $('a.search-locations').on('click', function (evt) {
+            evt.preventDefault();
+            renderSearchWidget();
+        })
+
+        $('a.browse-locations').on('click', function (evt) {
+            evt.preventDefault();
+            renderBrowseWidget();
+        })
     }
 
     function renderSearchWidget() {
@@ -45,12 +50,32 @@ $(function() {
             </div>
         `);
 
+        vm.selectedLocations.forEach(function (locationId) {
+            renderSearchInput(vm.locationList.find(function (location) {
+                return location.id === locationId
+            }));
+        });
+
         $('#add-location').on('click', function (evt) {
             evt.preventDefault();
             renderSearchInput();
         });
+
+        $('a.search-locations').toggleClass('hidden', true);
+        $('a.browse-locations').toggleClass('hidden', false);
     }
-    
+
+    function renderBrowseWidget() {
+        var widget = $('#widget').replaceWith(`
+            <div id="widget" class="widget-search wrapper">
+                                
+            </div>
+        `);
+
+        $('a.search-locations').toggleClass('hidden', false);
+        $('a.browse-locations').toggleClass('hidden', true);
+    }
+
     function renderSearchInput(location) {
 
         var locationName = location ? location.value : '';
