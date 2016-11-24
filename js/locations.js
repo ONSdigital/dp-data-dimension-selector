@@ -13,7 +13,8 @@ $(function() {
     (function init() {
         bindTopLevelHandlers();
         fetchLocations(function () {
-            renderSearchWidget();
+            //renderSearchWidget();
+            renderBrowseWidget();
         });
     })();
 
@@ -32,12 +33,12 @@ $(function() {
         $('a.search-locations').on('click', function (evt) {
             evt.preventDefault();
             renderSearchWidget();
-        })
+        });
 
         $('a.browse-locations').on('click', function (evt) {
             evt.preventDefault();
             renderBrowseWidget();
-        })
+        });
     }
 
     function renderSearchWidget() {
@@ -63,17 +64,6 @@ $(function() {
 
         $('a.search-locations').toggleClass('hidden', true);
         $('a.browse-locations').toggleClass('hidden', false);
-    }
-
-    function renderBrowseWidget() {
-        var widget = $('#widget').replaceWith(`
-            <div id="widget" class="widget-search wrapper">
-                                
-            </div>
-        `);
-
-        $('a.search-locations').toggleClass('hidden', false);
-        $('a.browse-locations').toggleClass('hidden', true);
     }
 
     function renderSearchInput(location) {
@@ -120,6 +110,32 @@ $(function() {
             saveToLocalStorage();
             updateRemoveBtnsVisibility();
         });
+    }
+
+    function renderBrowseWidget() {
+        $('#widget').replaceWith(`
+            <div id="widget" class="widget-browse wrapper">                
+            </div>
+        `);
+
+        vm.selectedLocations.forEach(function (locationId) {
+            renderFoldableSearchSelector(vm.locationList.find(function (location) {
+                return location.id === locationId
+            }), $('#widget'));
+        });
+
+        $('a.search-locations').toggleClass('hidden', false);
+        $('a.browse-locations').toggleClass('hidden', true);
+    }
+
+    function renderFoldableSearchSelector(location, $node) {
+        $selector = $('<div></div>');
+        $selector.foldable({
+            label: location.value,
+            content: 'internal',
+            replace: true
+        });
+        $node.append($selector);
     }
 
     function redirectToPath(path) {
