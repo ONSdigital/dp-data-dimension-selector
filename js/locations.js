@@ -114,14 +114,13 @@ $(function() {
 
     function renderBrowseWidget() {
         $('#widget').replaceWith(`
-            <div id="widget" class="widget-browse wrapper">                
+            <div id="widget" class="widget-browse wrapper">  
+            <!-- dynamic foldable selectors -->
             </div>
         `);
 
-        vm.selectedLocations.forEach(function (locationId) {
-            renderFoldableSearchSelector(vm.locationList.find(function (location) {
-                return location.id === locationId
-            }), $('#widget'));
+        vm.locationData.options.forEach(function (location) {
+            renderFoldableSearchSelector(location, $('#widget'));
         });
 
         $('a.search-locations').toggleClass('hidden', false);
@@ -129,13 +128,24 @@ $(function() {
     }
 
     function renderFoldableSearchSelector(location, $node) {
-        $selector = $('<div></div>');
+        var $selector = $('<div class="foldable-container"></div>');
+        console.log(location);
         $selector.foldable({
-            label: location.value,
-            content: 'internal',
+            labelHtml: `<h3>${location.name} (${location.id})</h3>`,
+            contentHtml: "",
             replace: true
         });
         $node.append($selector);
+
+        if (!location.options || location.options.length === 0) {
+            return;
+        }
+
+        var $body = $selector.find('.foldable-body');
+
+        location.options.forEach(function (locObj) {
+            renderFoldableSearchSelector(locObj, $body);
+        });
     }
 
     function redirectToPath(path) {

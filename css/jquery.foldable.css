@@ -1,6 +1,30 @@
-.foldable {
+.foldable-container {
     border-top: 2px solid #DEDEDE;
     margin: 10px 0;
     padding: 15px 0;
+}
+
+.foldable-container:last-child {
+    border-bottom: 2px solid #DEDEDE;
+}
+
+.foldable  > .foldable-header {
+    cursor: pointer;
+}
+
+.foldable  > .foldable-header h1,
+.foldable  > .foldable-header h2,
+.foldable  > .foldable-header h3,
+.foldable  > .foldable-header h4,
+.foldable  > .foldable-header h5 {
+    margin: 0; padding: 0;
+}
+
+.foldable  > .foldable-body {
+    display: block;
+}
+
+.foldable.expanded > .foldable-body {
+    display: none;
 }
 

@@ -1,8 +1,7 @@
 (function ( $ ) {
-
-    // dependency: font-awesome
-    // <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    // dynamic css classes added to top level element: `expanded` or `folded`
+    // JQuery foldable
+    // Simple JQuery plugin to create foldable blocks.
+    // It toggles 'expanded' class name on the top level element
 
     $.fn.foldable = function(options) {
 
@@ -10,9 +9,9 @@
             expanded: false,
             replace: false,
             label: '',
-            labelIsHTML: false,
+            labelHtml: null,
             content: '',
-            contentIsHTML: false,
+            contentHtml: null,
             template: '\
                 <div class="foldable">\
                  <div class="foldable-header"></div>\
@@ -21,22 +20,29 @@
             '
         }, options );
 
-        var $header = $(settings.headerTpl);
-        if (settings.html) {
-            $header.html(settings.html)
+        var $foldable = $(settings.template);
+
+        var $header = $foldable.children(".foldable-header");
+        $header.on('click', function (evt) {
+            evt.preventDefault();
+            settings.expanded = !settings.expanded;
+            $(this).closest('.foldable').toggleClass('expanded', settings.expanded);
+        });
+        if (settings.labelHtml) {
+            $header.html(settings.labelHtml);
         } else {
-            $header.text(settings.text)
+            $header.text(settings.label);
         }
 
-        $foldable = $(settings.template);
-        $foldable.find('.foldable-header')[settings.labelIsHTML ? 'html' : 'text'](settings.label);
-        $foldable.find('.foldable-body')[settings.contentIsHTML ? 'html' : 'text'](settings.content);
-
-        if (settings.replace) {
-            $(this).html($foldable);
+        if (settings.contentHtml) {
+            $foldable.children('.foldable-body').html(settings.contentHtml);
         } else {
-            $(this).append($foldable);
+            $foldable.children('.foldable-body').text(settings.content);
         }
+
+
+        $(this).append($foldable);
+        // todo: replace element
     };
 
 }( jQuery ));
