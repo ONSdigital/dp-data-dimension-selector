@@ -17,17 +17,17 @@
 }
 
 .foldable > .foldable-header .icon.icon-arrow-up--dark  {
-    display: none;
+    display: inline-block;
 }
 .foldable.expanded > .foldable-header .icon.icon-arrow-up--dark  {
-    display: inline-block;
+    display: none;
 }
 
 .foldable > .foldable-header .icon.icon-arrow-down--dark  {
-    display: inline-block;
+    display: none;
 }
 .foldable.expanded > .foldable-header .icon.icon-arrow-down--dark {
-    display: none;
+    display: inline-block;
 }
 
 .foldable  > .foldable-header.expandable {
