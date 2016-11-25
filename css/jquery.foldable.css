@@ -3,7 +3,7 @@
 }
 
 .foldable-container {
-    border-top: 2px solid #DEDEDE;
+    border-top: 2px solid #EAEAEA;
     margin: 10px 0 0;
     padding: 15px 0 0;
 }
@@ -14,6 +14,20 @@
 
 .foldable-container .foldable-container:last-child {
     border-bottom: none;
+}
+
+.foldable > .foldable-header .icon.icon-arrow-up--dark  {
+    display: none;
+}
+.foldable.expanded > .foldable-header .icon.icon-arrow-up--dark  {
+    display: inline-block;
+}
+
+.foldable > .foldable-header .icon.icon-arrow-down--dark  {
+    display: inline-block;
+}
+.foldable.expanded > .foldable-header .icon.icon-arrow-down--dark {
+    display: none;
 }
 
 .foldable  > .foldable-header.expandable {

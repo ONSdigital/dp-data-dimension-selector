@@ -172,6 +172,8 @@ $(function() {
         }
 
         return [
+            $('<span class="icon icon-arrow-up--dark float-right"></span>'),
+            $('<span class="icon icon-arrow-down--dark float-right"></span>'),
             $('<h3>' + location.name + '</h3>').addClass(fontClass),
             $('<div class="col-wrap"></div>').append(generateLocationCheckBox(location))
         ];
