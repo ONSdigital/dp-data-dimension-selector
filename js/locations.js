@@ -125,6 +125,11 @@ $(function() {
 
         $('a.search-locations').toggleClass('hidden', false);
         $('a.browse-locations').toggleClass('hidden', true);
+        $('[id*="location-"]').on('change', function(evt) {
+            var $checkbox = $(this);
+            updateChildrenCheckBoxes($checkbox);
+            updateParentSelectAllCheckBoxes($checkbox);
+        });
     }
 
     function renderFoldableSearchSelector(location, $node, depth) {
@@ -152,9 +157,8 @@ $(function() {
         headerCheckBoxes.push(generateLocationCheckBoxItem(location));
         headerCheckBoxes.push(generateLocationCheckBoxItem({
             name: 'All locations in ' + location.name,
-            id: location.id + '-parent'
+            id: location.id + '-select-all'
         }));
-
 
         $body.append($('<div class="margin-bottom--double"></div>').append(headerCheckBoxes));
 
@@ -164,9 +168,50 @@ $(function() {
             if (depth < 3) {
                 renderFoldableSearchSelector(locObj, $body, depth);
             } else {
-                $body.append($('<div class="col-wrap"></div>').append(generateLocationCheckBoxColumn(locObj)));
+                var columnCheckBoxes = $('<div class="col-wrap"></div>')
+                    .append(generateLocationCheckBoxColumn(locObj));
+                $body.append(columnCheckBoxes);
             }
         });
+    }
+
+    function updateChildrenCheckBoxes($checkbox) {
+        var isChecked = $checkbox.prop('checked');
+        var isParent = /-select-all$/.test($checkbox.prop('id'));
+        var allChecked = true;
+
+        if (!isParent) {
+            $checkbox
+                .closest('.foldable')
+                .find('input[id*="location-"]:gt(1)')
+                .each(function (index, input) {
+                    if (!$(input).prop('checked')) {
+                        allChecked = false;
+                    }
+                });
+        }
+
+        if (isParent || (!isParent && allChecked)) {
+            var checked = isParent ? isChecked : allChecked === true;
+            $checkbox
+                .closest('.foldable')
+                .find('input[id*="location-"]:not(:first)')
+                .prop('checked', checked);
+        }
+    }
+
+    function updateParentSelectAllCheckBoxes($checkbox) {
+        var isChecked = $checkbox.prop('checked');
+        var index = $checkbox.index();
+        var ignoreCount = index === 0 ? 1 : 0;
+        if (!isChecked) {
+            $checkbox.parents('.foldable').slice(ignoreCount).each(function() {
+                $(this)
+                    .find('input[id*="-select-all"]')
+                    .first()
+                    .prop('checked', false);
+            })
+        }
     }
 
     function generateLocationHeader(location, depth) {
@@ -192,14 +237,12 @@ $(function() {
     }
 
     function generateLocationCheckBoxItem(location) {
-        var $el = $(`            
+        return $el = $(`            
             <div class="checkbox inline-block margin-right--half">
                 <input id="location-${location.id}" data-value="${location.id}" type="checkbox">
                 <label for="location-${location.id}">${location.name}</label>
             </div>            
         `);
-
-        return $el;
     }
 
     function generateLocationCheckBoxColumn(location) {
