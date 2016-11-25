@@ -33,7 +33,7 @@
         if (settings.expandable) {
             $header.on('click', function () {
                 settings.expanded = !settings.expanded;
-                $(this).closest('.foldable').toggleClass('expanded', settings.expanded);
+                $foldable.toggleClass('expanded', settings.expanded);
             }).addClass('expandable');
 
             if (settings.contentHtml) {
@@ -44,6 +44,8 @@
         }
 
         $(this).append($foldable);
+        $foldable.toggleClass('expanded', settings.expanded);
+
         // todo: replace element
     };
 

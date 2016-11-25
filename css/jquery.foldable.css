@@ -48,9 +48,14 @@
     display: block;
 }
 
-.foldable.expanded > .foldable-body {
+.foldable > .foldable-body {
     display: none;
 }
+
+.foldable.expanded > .foldable-body {
+    display: block;
+}
+
 
 .checkbox label {
     -webkit-touch-callout: none; /* iOS Safari */

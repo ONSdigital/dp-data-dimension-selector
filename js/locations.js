@@ -136,7 +136,8 @@ $(function() {
             labelHtml: generateLocationHeader(location, depth),
             contentHtml: "",
             replace: true,
-            expandable: isParent
+            //expandable: isParent,
+            expanded: depth === 0
         });
         $node.append($selector);
 
@@ -146,7 +147,7 @@ $(function() {
 
         var $body = $selector.find('.foldable-body');
 
-        // generate header
+        // generate body header buttons
         var headerCheckBoxes = [];
         headerCheckBoxes.push(generateLocationCheckBoxItem(location));
         if (depth != 0) {
