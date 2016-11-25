@@ -150,12 +150,11 @@ $(function() {
         // generate body header buttons
         var headerCheckBoxes = [];
         headerCheckBoxes.push(generateLocationCheckBoxItem(location));
-        if (depth != 0) {
-            headerCheckBoxes.push(generateLocationCheckBoxItem({
-                name: 'All locations in ' + location.name,
-                id: location.id + '-parent'
-            }));
-        }
+        headerCheckBoxes.push(generateLocationCheckBoxItem({
+            name: 'All locations in ' + location.name,
+            id: location.id + '-parent'
+        }));
+
 
         $body.append($('<div class="margin-bottom--double"></div>').append(headerCheckBoxes));
 
