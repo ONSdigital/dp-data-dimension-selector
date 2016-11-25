@@ -175,13 +175,13 @@ $(function() {
 
         switch (depth) {
             case 0:
-                fontClass = 'font-size--24 strong';
+                fontClass = 'font-size--24 strong not-selectable';
                 break;
             case 1:
-                fontClass ='font-size--21 strong';
+                fontClass ='font-size--21 strong not-selectable';
                 break;
             case 2:
-                fontClass ='font-size--17 strong';
+                fontClass ='font-size--17 strong not-selectable';
                 break;
         }
 
