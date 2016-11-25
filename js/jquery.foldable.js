@@ -7,6 +7,7 @@
 
         var settings = $.extend({
             expanded: false,
+            expandable: true,
             replace: false,
             label: '',
             labelHtml: null,
@@ -18,27 +19,29 @@
                  <div class="foldable-body"></div>\
                 </div>\
             '
-        }, options );
+        }, options);
 
         var $foldable = $(settings.template);
-
         var $header = $foldable.children(".foldable-header");
-        $header.on('click', function () {
-            settings.expanded = !settings.expanded;
-            $(this).closest('.foldable').toggleClass('expanded', settings.expanded);
-        });
+
         if (settings.labelHtml) {
             $header.html(settings.labelHtml);
         } else {
             $header.text(settings.label);
         }
 
-        if (settings.contentHtml) {
-            $foldable.children('.foldable-body').html(settings.contentHtml);
-        } else {
-            $foldable.children('.foldable-body').text(settings.content);
-        }
+        if (settings.expandable) {
+            $header.on('click', function () {
+                settings.expanded = !settings.expanded;
+                $(this).closest('.foldable').toggleClass('expanded', settings.expanded);
+            }).addClass('expandable');
 
+            if (settings.contentHtml) {
+                $foldable.children('.foldable-body').html(settings.contentHtml);
+            } else {
+                $foldable.children('.foldable-body').text(settings.content);
+            }
+        }
 
         $(this).append($foldable);
         // todo: replace element

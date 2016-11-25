@@ -16,7 +16,7 @@
     border-bottom: none;
 }
 
-.foldable  > .foldable-header {
+.foldable  > .foldable-header.expandable {
     cursor: pointer;
 }
 

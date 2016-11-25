@@ -130,15 +130,17 @@ $(function() {
     function renderFoldableSearchSelector(location, $node, depth) {
         var depth = depth !== undefined ? depth :  0;
         var $selector = $('<div class="foldable-container"></div>');
+        var isParent = location.options !== undefined && location.options.length > 0;
 
         $selector.foldable({
             labelHtml: generateLocationHeader(location, depth),
             contentHtml: "",
-            replace: true
+            replace: true,
+            expandable: isParent
         });
         $node.append($selector);
 
-        if (!location.options || location.options.length === 0) {
+        if (!isParent) {
             return;
         }
 
