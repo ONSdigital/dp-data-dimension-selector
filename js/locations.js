@@ -146,12 +146,25 @@ $(function() {
 
         var $body = $selector.find('.foldable-body');
 
+        // generate header
+        var headerCheckBoxes = [];
+        headerCheckBoxes.push(generateLocationCheckBoxItem(location));
+        if (depth != 0) {
+            headerCheckBoxes.push(generateLocationCheckBoxItem({
+                name: 'All locations in ' + location.name,
+                id: location.id + '-parent'
+            }));
+        }
+
+        $body.append($('<div class="margin-bottom--double"></div>').append(headerCheckBoxes));
+
+        // generate body
         depth ++;
         location.options.forEach(function (locObj) {
             if (depth < 3) {
                 renderFoldableSearchSelector(locObj, $body, depth);
             } else {
-                $body.append($('<div class="col-wrap"></div>').append(generateLocationCheckBox(locObj)));
+                $body.append($('<div class="col-wrap"></div>').append(generateLocationCheckBoxColumn(locObj)));
             }
         });
     }
@@ -174,12 +187,22 @@ $(function() {
         return [
             $('<span class="icon icon-arrow-up--dark float-right"></span>'),
             $('<span class="icon icon-arrow-down--dark float-right"></span>'),
-            $('<h3>' + location.name + '</h3>').addClass(fontClass),
-            $('<div class="col-wrap"></div>').append(generateLocationCheckBox(location))
+            $('<h3>' + location.name + '</h3>').addClass(fontClass)
         ];
     }
 
-    function generateLocationCheckBox(location) {
+    function generateLocationCheckBoxItem(location) {
+        var $el = $(`            
+            <div class="checkbox inline-block margin-right--half">
+                <input id="location-${location.id}" data-value="${location.id}" type="checkbox">
+                <label for="location-${location.id}">${location.name}</label>
+            </div>            
+        `);
+
+        return $el;
+    }
+
+    function generateLocationCheckBoxColumn(location) {
         return $(`
             <div class="col col--md-one-third col--lg-one-third margin-bottom--half">
                 <div class="checkbox inline-block">
