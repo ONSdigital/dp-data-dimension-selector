@@ -246,14 +246,16 @@ $(function() {
         $('input[id*="-select-all-children"]').each(function (parentIndex, parent) {
             var allSelected = true;
             var $parent = $(parent);
-            var children = $parent.closest('.foldable').find('input[id*="location-"]:gt(1)');
+            var children = $parent
+                .closest('.foldable')
+                .find('input[id*="location-"]:gt(0)');
 
             var index = 0;
             while (allSelected && index < children.length - 1) {
                 $location = $(children[index]);
-                //if (!/-select-all-children$/.test($location.prop('id'))) {
+                if (!/-select-all-children$/.test($location.prop('id'))) {
                     allSelected = $location.prop('checked');
-                //}
+                }
                 index ++;
             }
 
