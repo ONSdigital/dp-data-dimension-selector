@@ -1,11 +1,16 @@
 $(function() {
 
+    var SCREEN = {
+        BROWSE: 'browse',
+        SEARCH: 'search'
+    };
     var dataset = $('body').data('dataset');
     var vm = {
         locationList: [],
         locationData: null,
         selectedLocations: [],
-        storedData: localStorage.getItem(dataset + '-selected')
+        storedData: localStorage.getItem(dataset + '-selected'),
+        currentScreen: SCREEN.BROWSE
     };
 
     vm.selectedLocations = vm.storedData ? Object.keys(JSON.parse(vm.storedData).locations) : ["K04000001"];
@@ -13,8 +18,7 @@ $(function() {
     (function init() {
         bindTopLevelHandlers();
         fetchLocations(function () {
-            renderSearchWidget();
-            //renderBrowseWidget();
+            renderScreen();
         });
     })();
 
@@ -39,9 +43,32 @@ $(function() {
             evt.preventDefault();
             renderBrowseWidget();
         });
+
+        $('.select-all').on('click', function () {
+            toggleSelectAll(true);
+            updateLocationCount();
+            updateSelectAllButtons();
+        });
+
+        $('.deselect-all').on('click', function () {
+            !toggleSelectAll(false);
+            updateLocationCount();
+            updateSelectAllButtons();
+        });
     }
 
+    function renderScreen() {
+        switch (vm.currentScreen) {
+            case SCREEN.SEARCH:
+                renderSearchWidget();
+                break;
+            case SCREEN.BROWSE:
+                renderBrowseWidget();
+                break;
+        }
+    }
     function renderSearchWidget() {
+        vm.currentScreen = SCREEN.SEARCH;
         var widget = $('#widget').replaceWith(`
             <div id="widget" class="widget-search wrapper">
                 <!-- dynamic search inputs -->
@@ -66,6 +93,7 @@ $(function() {
         $('a.browse-locations').toggleClass('hidden', false);
 
         updateLocationCount();
+        updateSelectAllButtons();
     }
 
     function renderSearchInput(location) {
@@ -117,6 +145,7 @@ $(function() {
     }
 
     function renderBrowseWidget() {
+        vm.currentScreen = SCREEN.BROWSE;
         $('#widget').replaceWith(`
             <div id="widget" class="widget-browse wrapper">  
             <!-- dynamic foldable selectors -->
@@ -139,6 +168,7 @@ $(function() {
         restoreSelectedLocations();
         updateSelectedLocations();
         updateLocationCount();
+        updateSelectAllButtons();
     }
 
     function renderFoldableSearchSelector(location, $node, depth) {
@@ -223,13 +253,34 @@ $(function() {
         }
     }
 
+    function toggleSelectAll(enabled) {
+        if (enabled === undefined) {
+            enabled = !enabled;
+        }
+
+        if (enabled) {
+            vm.selectedLocations = vm.locationList.map(function (location) {
+                return location.id;
+            })
+        } else {
+            vm.selectedLocations = [];
+        }
+
+        renderScreen();
+    }
 
     function restoreSelectedLocations() {
         vm.selectedLocations.forEach(function (locationId) {
-            var $checkbox = $('input#location-' + locationId)
+            var $checkbox = $('input#location-' + locationId);
             $checkbox.prop('checked', true);
             updateParentSelectAllCheckBoxes($checkbox);
         });
+    }
+
+    function updateSelectAllButtons() {
+        var allSelected = vm.selectedLocations.length === vm.locationList.length;
+        $('.select-all').toggleClass('hidden', allSelected);
+        $('.deselect-all').toggleClass('hidden', !allSelected);
     }
 
     function updateSelectedLocations() {
@@ -335,6 +386,8 @@ $(function() {
         var storageKey = dataset + '-selected';
         var data = JSON.parse(localStorage.getItem(storageKey)) || {};
         data.locations = {};
+        console.log(vm.selectedLocations);
+        debugger;
         vm.selectedLocations.forEach(function (code) {
             data.locations[code] = true; // why? check selector.js JQuery onReady block
         });
