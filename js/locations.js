@@ -13,8 +13,8 @@ $(function() {
     (function init() {
         bindTopLevelHandlers();
         fetchLocations(function () {
-            //renderSearchWidget();
-            renderBrowseWidget();
+            renderSearchWidget();
+            //renderBrowseWidget();
         });
     })();
 
