@@ -102,7 +102,7 @@ $(function() {
         var index = location ? vm.selectedLocations.indexOf(location.id) : vm.selectedLocations.length;
         var $widget = $('#widget');
 
-        $widget.find('> .widget-footer:last-child').before(`
+        $locationInput = $(`
             <div class="wrapper margin-top--half ui-widget" data-index="${index}">
                 <div class="col">
                     <label class="font-size--17 margin-right--double">Location name</label>                
@@ -114,9 +114,10 @@ $(function() {
             </div>        
         `);
 
+        $widget.find('> .widget-footer:last-child').before($locationInput);
         updateRemoveBtnsVisibility();
 
-        $widget.find('input.location-search').autocomplete({
+        $locationInput.find('input.location-search').autocomplete({
             source: function (request, response) {
                 response(vm.locationList.filter(function (item) {
                     var notSelected = vm.selectedLocations.indexOf(item.id) === -1;
@@ -131,11 +132,19 @@ $(function() {
             }
         });
 
-        $widget.find('.remove-btn').on('click', function (evt) {
+        $locationInput.find('.remove-btn').on('click', function (evt) {
             var $widget = $(this).closest('.ui-widget');
             var dataIndex = $widget.data('index');
+
             vm.selectedLocations.splice(dataIndex, 1);
             $widget.remove();
+
+            // reindex ui-widgets
+            $('#widget.widget-search').find('.ui-widget').each(function (index, widget) {
+                console.log(index, widget)
+                $(widget).data('index', index);
+            });
+
             updateLocationCount();
             saveToLocalStorage();
             updateRemoveBtnsVisibility();
