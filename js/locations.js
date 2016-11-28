@@ -191,10 +191,12 @@ $(function() {
         // generate body header buttons
         var headerCheckBoxes = [];
         headerCheckBoxes.push(generateLocationCheckBoxItem(location));
-        headerCheckBoxes.push(generateLocationCheckBoxItem({
-            name: 'All locations in ' + location.name,
-            id: location.id + '-select-all'
-        }));
+        if (location.options && location.options.length > 0) {
+            headerCheckBoxes.push(generateLocationCheckBoxItem({
+                name: 'All locations in ' + location.name,
+                id: location.id + '-select-all'
+            }));
+        }
 
         $body.append($('<div class="margin-bottom--double"></div>').append(headerCheckBoxes));
 
