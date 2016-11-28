@@ -162,7 +162,7 @@ $(function() {
         $('[id*="location-"]').on('change', function(evt) {
             var $checkbox = $(this);
             updateChildrenCheckBoxes($checkbox);
-            updateParentSelectAllCheckBoxes($checkbox);
+            updateSelectAllCheckBoxes();
         });
 
         restoreSelectedLocations();
@@ -194,7 +194,7 @@ $(function() {
         if (location.options && location.options.length > 0) {
             headerCheckBoxes.push(generateLocationCheckBoxItem({
                 name: 'All locations in ' + location.name,
-                id: location.id + '-select-all'
+                id: location.id + '-select-all-children'
             }));
         }
 
@@ -216,7 +216,7 @@ $(function() {
 
     function updateChildrenCheckBoxes($checkbox) {
         var isChecked = $checkbox.prop('checked');
-        var isParent = /-select-all$/.test($checkbox.prop('id'));
+        var isParent = /-select-all-children$/.test($checkbox.prop('id'));
         var allChecked = true;
 
         if (!isParent) {
@@ -239,18 +239,23 @@ $(function() {
         }
     }
 
-    function updateParentSelectAllCheckBoxes($checkbox) {
-        var isChecked = $checkbox.prop('checked');
-        var index = $checkbox.index();
-        var ignoreCount = index === 0 ? 1 : 0;
-        if (!isChecked) {
-            $checkbox.parents('.foldable').slice(ignoreCount).each(function() {
-                $(this)
-                    .find('input[id*="-select-all"]')
-                    .first()
-                    .prop('checked', false);
-            })
-        }
+    function updateSelectAllCheckBoxes() {
+        $('input[id*="-select-all-children"]').each(function (parentIndex, parent) {
+            var allSelected = true;
+            var $parent = $(parent);
+            var children = $parent.closest('.foldable').find('input[id*="location-"]:gt(1)');
+
+            var index = 0;
+            while (allSelected && index < children.length - 1) {
+                $location = $(children[index]);
+                //if (!/-select-all-children$/.test($location.prop('id'))) {
+                    allSelected = $location.prop('checked');
+                //}
+                index ++;
+            }
+
+            $parent.prop('checked', allSelected);
+        });
     }
 
     function toggleSelectAll(enabled) {
@@ -273,7 +278,7 @@ $(function() {
         vm.selectedLocations.forEach(function (locationId) {
             var $checkbox = $('input#location-' + locationId);
             $checkbox.prop('checked', true);
-            updateParentSelectAllCheckBoxes($checkbox);
+            updateSelectAllCheckBoxes();
         });
     }
 
@@ -289,7 +294,7 @@ $(function() {
         $('input[type="checkbox"]').each(function (index, input) {
             var $input = $(input);
 
-            if (/-select-all/.test($input.attr('id'))) {
+            if (/-select-all-children$/.test($input.attr('id'))) {
                 return;
             }
 
