@@ -1,4 +1,4 @@
-*, p {
+p, div {
     font-size: 17px;
     line-height: 28px;
 }
@@ -202,4 +202,8 @@ a {
 
 a:hover {
     cursor: pointer;
+}
+
+.location-search  {
+    padding: 4px 8px;
 }

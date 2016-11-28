@@ -102,23 +102,22 @@ $(function() {
         var index = location ? vm.selectedLocations.indexOf(location.id) : vm.selectedLocations.length;
         var $widget = $('#widget');
 
-        $widget.find('> .widget-footer:last-child').before(`
+        $locationInput = $(`
             <div class="wrapper margin-top--half ui-widget" data-index="${index}">
-                <div class="col col--md-one-third col--lg-one-third">
-                    <label class="font-size--17">Location name</label>
-                </div>
-                <div class="col col--md-one-third col--lg-one-third">
+                <div class="col">
+                    <label class="font-size--17 margin-right--double">Location name</label>                
                     <a class="remove-btn">Remove</a>
                 </div>
-                <div class="col">
-                    <input class="location-search" value="${locationName}">
+                <div class="col margin-bottom--half">
+                    <input class="location-search col--md-15 col--lg-15" value="${locationName}">
                 </div>                
             </div>        
         `);
 
+        $widget.find('> .widget-footer:last-child').before($locationInput);
         updateRemoveBtnsVisibility();
 
-        $widget.find('input.location-search').autocomplete({
+        $locationInput.find('input.location-search').autocomplete({
             source: function (request, response) {
                 response(vm.locationList.filter(function (item) {
                     var notSelected = vm.selectedLocations.indexOf(item.id) === -1;
@@ -133,11 +132,18 @@ $(function() {
             }
         });
 
-        $widget.find('.remove-btn').on('click', function (evt) {
+        $locationInput.find('.remove-btn').on('click', function (evt) {
             var $widget = $(this).closest('.ui-widget');
             var dataIndex = $widget.data('index');
+
             vm.selectedLocations.splice(dataIndex, 1);
             $widget.remove();
+
+            // reindex ui-widgets
+            $('#widget.widget-search').find('.ui-widget').each(function (index, widget) {
+                $(widget).data('index', index);
+            });
+
             updateLocationCount();
             saveToLocalStorage();
             updateRemoveBtnsVisibility();
@@ -180,8 +186,8 @@ $(function() {
         var isParent = location.options !== undefined && location.options.length > 0;
 
         $selector.foldable({
-            labelHtml: generateLocationHeader(location, depth),
-            contentHtml: "",
+            labelHtml: depth === 0 ? null : generateLocationHeader(location, depth),
+            contentHtml: null,
             replace: true,
             //expandable: isParent,
             expanded: depth === 0
@@ -201,7 +207,19 @@ $(function() {
             }));
         }
 
-        $body.append($('<div class="margin-bottom--double"></div>').append(headerCheckBoxes));
+        if (depth === 0) {
+            $body
+                .append('<a class="show-all float-right margin-top--half" data-toggle="true">Show all</a>')
+                .append('<a class="hide-all float-right margin-top--half hidden" data-toggle="false">Hide all</a>')
+                .append($('<div class="margin-bottom"></div>').append(headerCheckBoxes));
+
+            $('.show-all,.hide-all').on('click', function () {
+                toggleExpandAll($(this).data('toggle'));
+            });
+
+        } else {
+            $body.append($('<div class="margin-bottom--double"></div>').append(headerCheckBoxes));
+        }
 
         // generate body
         depth ++;
@@ -263,9 +281,19 @@ $(function() {
         });
     }
 
+    function toggleExpandAll(expanded) {
+        if (expanded === undefined) {
+            expanded = false;
+        }
+
+        $('.foldable:gt(0)').toggleClass('expanded', expanded);
+        $('.show-all').toggleClass('hidden', expanded);
+        $('.hide-all').toggleClass('hidden', !expanded);
+    }
+
     function toggleSelectAll(enabled) {
         if (enabled === undefined) {
-            enabled = !enabled;
+            enabled = false;
         }
 
         if (enabled) {
@@ -276,7 +304,17 @@ $(function() {
             vm.selectedLocations = [];
         }
 
-        renderScreen();
+        switch (vm.currentScreen) {
+            case SCREEN.SEARCH:
+                renderSearchWidget();
+                renderSearchInput();
+                break;
+            case SCREEN.BROWSE:
+                updateLocationCheckboxes();
+                updateSelectAllCheckBoxes();
+                updateSelectAllButtons();
+                break;
+        }
     }
 
     function restoreSelectedLocations() {
@@ -284,6 +322,14 @@ $(function() {
             var $checkbox = $('input#location-' + locationId);
             $checkbox.prop('checked', true);
             updateSelectAllCheckBoxes();
+        });
+    }
+
+    function updateLocationCheckboxes() {
+        $('input[id*="location-"]').each(function(index, input) {
+            var $input = $(input);
+            var id = $input.data('value').toString();
+            $input.prop('checked', vm.selectedLocations.indexOf(id) > -1);
         });
     }
 
@@ -316,30 +362,33 @@ $(function() {
     }
 
     function generateLocationHeader(location, depth) {
-        var fontClass = '';
-
+        var $element = null;
         switch (depth) {
-            case 0:
-                fontClass = 'font-size--24 strong not-selectable';
-                break;
+
             case 1:
-                fontClass ='font-size--21 strong not-selectable';
+                $element = $('<h2></h2>');
                 break;
             case 2:
-                fontClass ='font-size--17 strong not-selectable';
+                $element = $('<h3></h3>').addClass('font-size--21');
                 break;
+        }
+
+        if ($element) {
+            $element
+                .append('<strong>' + location.name + '</strong>')
+                .addClass('not-selectable strong');
         }
 
         return [
             $('<span class="icon icon-arrow-up--dark float-right"></span>'),
             $('<span class="icon icon-arrow-down--dark float-right"></span>'),
-            $('<h3>' + location.name + '</h3>').addClass(fontClass)
+            $element
         ];
     }
 
     function generateLocationCheckBoxItem(location) {
         return $el = $(`            
-            <div class="checkbox inline-block margin-right--half">
+            <div class="checkbox inline-block margin-right--half flush-top">
                 <input id="location-${location.id}" data-value="${location.id}" type="checkbox">
                 <label for="location-${location.id}">${location.name}</label>
             </div>            
