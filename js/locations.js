@@ -205,7 +205,7 @@ $(function() {
             $body
                 .append('<a class="show-all float-right margin-right" data-toggle="true">Show all</a>')
                 .append('<a class="hide-all float-right hidden" data-toggle="false">Hide all</a>')
-                .append(headerCheckBoxes);
+                .append($('<div class="margin-bottom"></div>').append(headerCheckBoxes));
 
             $('.show-all,.hide-all').on('click', function () {
                 toggleExpandAll($(this).data('toggle'));

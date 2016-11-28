@@ -4,7 +4,7 @@
 
 .foldable-container {
     border-top: 2px solid #EAEAEA;
-    margin: 10px 0 0;
+    margin: 0;
     padding: 0;
     clear: both;
 }
@@ -21,6 +21,7 @@
 .foldable > .foldable-header .icon.icon-arrow-down--dark,
 .foldable.expanded > .foldable-header .icon.icon-arrow-up--dark {
     display: inline-block;
+    margin-top: 16px;
 }
 
 .foldable > .foldable-header .icon.icon-arrow-up--dark,
@@ -37,11 +38,20 @@
 .foldable  > .foldable-header h3,
 .foldable  > .foldable-header h4,
 .foldable  > .foldable-header h5 {
-    margin: 10px 0 10px; padding: 0;
+    margin: 0;
+    padding: 16px 0;
+}
+
+.foldable.expanded  .foldable.expanded  > .foldable-body .margin-bottom--double {
+    margin-bottom: 16px !important;
+}
+
+.foldable.expanded .foldable.expanded .foldable.expanded  > .foldable-body .margin-bottom--double:first-child {
+    margin-bottom: 32px !important;
 }
 
 .foldable  > .foldable-body {
-    margin-top: 20px;
+    margin-top: 10px;
     display: block;
 }
 
