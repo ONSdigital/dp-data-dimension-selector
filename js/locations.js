@@ -163,6 +163,9 @@ $(function() {
             var $checkbox = $(this);
             updateChildrenCheckBoxes($checkbox);
             updateSelectAllCheckBoxes();
+            updateSelectedLocations();
+            updateSelectAllButtons();
+            updateLocationCount();
         });
 
         restoreSelectedLocations();
