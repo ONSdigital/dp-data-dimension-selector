@@ -42,6 +42,10 @@
     padding: 16px 0;
 }
 
+.foldable.expanded .foldable.expanded .foldable-body {
+    margin-top: 0;
+}
+
 .foldable.expanded  .foldable.expanded  > .foldable-body .margin-bottom--double {
     margin-bottom: 16px !important;
 }
