@@ -317,23 +317,25 @@ $(function() {
 
     function generateLocationHeader(location, depth) {
         var fontClass = '';
-
+        var $element = null;
         switch (depth) {
-            case 0:
-                fontClass = 'font-size--24 strong not-selectable';
-                break;
             case 1:
-                fontClass ='font-size--21 strong not-selectable';
+                $element = $('<h2></h2>');
                 break;
             case 2:
-                fontClass ='font-size--17 strong not-selectable';
+                $element = $('<h3></h3>').addClass('font-size--21');
                 break;
         }
 
+        if ($element) {
+            $element
+                .append('<strong>' + location.name + '</strong>')
+                .addClass('not-selectable strong');
+        }
         return [
             $('<span class="icon icon-arrow-up--dark float-right"></span>'),
             $('<span class="icon icon-arrow-down--dark float-right"></span>'),
-            $('<h3>' + location.name + '</h3>').addClass(fontClass)
+            $element
         ];
     }
 
