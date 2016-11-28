@@ -239,7 +239,7 @@ $(function() {
             }
 
             if ($input.prop('checked')) {
-                selectedLocations.push($input.data('value'));
+                selectedLocations.push($input.data('value').toString());
             }
         });
         vm.selectedLocations = selectedLocations;
