@@ -141,7 +141,6 @@ $(function() {
 
             // reindex ui-widgets
             $('#widget.widget-search').find('.ui-widget').each(function (index, widget) {
-                console.log(index, widget)
                 $(widget).data('index', index);
             });
 
