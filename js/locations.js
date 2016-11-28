@@ -387,7 +387,7 @@ $(function() {
         var data = JSON.parse(localStorage.getItem(storageKey)) || {};
         data.locations = {};
         console.log(vm.selectedLocations);
-        debugger;
+
         vm.selectedLocations.forEach(function (code) {
             data.locations[code] = true; // why? check selector.js JQuery onReady block
         });
