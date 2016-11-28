@@ -125,11 +125,16 @@ $(function() {
 
         $('a.search-locations').toggleClass('hidden', false);
         $('a.browse-locations').toggleClass('hidden', true);
+
         $('[id*="location-"]').on('change', function(evt) {
             var $checkbox = $(this);
             updateChildrenCheckBoxes($checkbox);
             updateParentSelectAllCheckBoxes($checkbox);
+            updateSelectedLocations();
         });
+
+        restoreSelectedLocations();
+        updateSelectedLocations();
     }
 
     function renderFoldableSearchSelector(location, $node, depth) {
@@ -212,6 +217,36 @@ $(function() {
                     .prop('checked', false);
             })
         }
+    }
+
+
+    function restoreSelectedLocations() {
+        vm.selectedLocations.forEach(function (locationId) {
+            var $checkbox = $('input#location-' + locationId)
+            $checkbox.prop('checked', true);
+            updateParentSelectAllCheckBoxes($checkbox);
+        });
+    }
+
+    function updateSelectedLocations() {
+
+        var selectedLocations = [];
+        $('input[type="checkbox"]').each(function (index, input) {
+            var $input = $(input);
+
+            if (/-select-all/.test($input.attr('id'))) {
+                return;
+            }
+
+            if ($input.prop('checked')) {
+                selectedLocations.push($input.data('value'));
+            }
+        });
+        vm.selectedLocations = selectedLocations;
+
+        $('.locations-total').text(vm.locationList.length);
+        $('.locations-selected').text(vm.selectedLocations.length);
+
     }
 
     function generateLocationHeader(location, depth) {
