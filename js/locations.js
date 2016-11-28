@@ -64,6 +64,8 @@ $(function() {
 
         $('a.search-locations').toggleClass('hidden', true);
         $('a.browse-locations').toggleClass('hidden', false);
+
+        updateLocationCount();
     }
 
     function renderSearchInput(location) {
@@ -99,6 +101,7 @@ $(function() {
             select: function( event, ui ) {
                 var dataIndex = $(this).closest('.ui-widget').data("index");
                 vm.selectedLocations[dataIndex] = ui.item.id;
+                updateLocationCount();
             }
         });
 
@@ -107,6 +110,7 @@ $(function() {
             var dataIndex = $widget.data('index');
             vm.selectedLocations.splice(dataIndex, 1);
             $widget.remove();
+            updateLocationCount();
             saveToLocalStorage();
             updateRemoveBtnsVisibility();
         });
@@ -130,11 +134,11 @@ $(function() {
             var $checkbox = $(this);
             updateChildrenCheckBoxes($checkbox);
             updateParentSelectAllCheckBoxes($checkbox);
-            updateSelectedLocations();
         });
 
         restoreSelectedLocations();
         updateSelectedLocations();
+        updateLocationCount();
     }
 
     function renderFoldableSearchSelector(location, $node, depth) {
@@ -243,10 +247,11 @@ $(function() {
             }
         });
         vm.selectedLocations = selectedLocations;
+    }
 
+    function updateLocationCount() {
         $('.locations-total').text(vm.locationList.length);
         $('.locations-selected').text(vm.selectedLocations.length);
-
     }
 
     function generateLocationHeader(location, depth) {
