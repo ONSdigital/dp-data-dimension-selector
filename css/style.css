@@ -203,3 +203,7 @@ a {
 a:hover {
     cursor: pointer;
 }
+
+.location-search  {
+    padding: 4px 8px;
+}

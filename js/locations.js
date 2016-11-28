@@ -104,14 +104,12 @@ $(function() {
 
         $widget.find('> .widget-footer:last-child').before(`
             <div class="wrapper margin-top--half ui-widget" data-index="${index}">
-                <div class="col col--md-one-third col--lg-one-third">
-                    <label class="font-size--17">Location name</label>
-                </div>
-                <div class="col col--md-one-third col--lg-one-third">
+                <div class="col">
+                    <label class="font-size--17 margin-right--double">Location name</label>                
                     <a class="remove-btn">Remove</a>
                 </div>
-                <div class="col">
-                    <input class="location-search" value="${locationName}">
+                <div class="col margin-bottom--half">
+                    <input class="location-search col--md-15 col--lg-15" value="${locationName}">
                 </div>                
             </div>        
         `);
