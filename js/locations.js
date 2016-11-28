@@ -180,8 +180,8 @@ $(function() {
         var isParent = location.options !== undefined && location.options.length > 0;
 
         $selector.foldable({
-            labelHtml: generateLocationHeader(location, depth),
-            contentHtml: "",
+            labelHtml: depth === 0 ? null : generateLocationHeader(location, depth),
+            contentHtml: null,
             replace: true,
             //expandable: isParent,
             expanded: depth === 0
@@ -201,7 +201,19 @@ $(function() {
             }));
         }
 
-        $body.append($('<div class="margin-bottom--double"></div>').append(headerCheckBoxes));
+        if (depth === 0) {
+            $body
+                .append('<a class="show-all float-right margin-right" data-toggle="true">Show all</a>')
+                .append('<a class="hide-all float-right hidden" data-toggle="false">Hide all</a>')
+                .append(headerCheckBoxes);
+
+            $('.show-all,.hide-all').on('click', function () {
+                toggleExpandAll($(this).data('toggle'));
+            });
+
+        } else {
+            $body.append($('<div class="margin-bottom--double"></div>').append(headerCheckBoxes));
+        }
 
         // generate body
         depth ++;
@@ -263,9 +275,19 @@ $(function() {
         });
     }
 
+    function toggleExpandAll(expanded) {
+        if (expanded === undefined) {
+            expanded = false;
+        }
+
+        $('.foldable:gt(0)').toggleClass('expanded', expanded);
+        $('.show-all').toggleClass('hidden', expanded);
+        $('.hide-all').toggleClass('hidden', !expanded);
+    }
+
     function toggleSelectAll(enabled) {
         if (enabled === undefined) {
-            enabled = !enabled;
+            enabled = false;
         }
 
         if (enabled) {
@@ -316,9 +338,9 @@ $(function() {
     }
 
     function generateLocationHeader(location, depth) {
-        var fontClass = '';
         var $element = null;
         switch (depth) {
+
             case 1:
                 $element = $('<h2></h2>');
                 break;
@@ -332,6 +354,7 @@ $(function() {
                 .append('<strong>' + location.name + '</strong>')
                 .addClass('not-selectable strong');
         }
+
         return [
             $('<span class="icon icon-arrow-up--dark float-right"></span>'),
             $('<span class="icon icon-arrow-down--dark float-right"></span>'),
@@ -341,7 +364,7 @@ $(function() {
 
     function generateLocationCheckBoxItem(location) {
         return $el = $(`            
-            <div class="checkbox inline-block margin-right--half">
+            <div class="checkbox inline-block margin-right--half flush-top">
                 <input id="location-${location.id}" data-value="${location.id}" type="checkbox">
                 <label for="location-${location.id}">${location.name}</label>
             </div>            
