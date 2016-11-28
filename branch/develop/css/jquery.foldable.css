@@ -1,0 +1,65 @@
+.widget-browse  > .foldable-container {
+    margin-left: 16px !important;
+}
+
+.foldable-container {
+    border-top: 2px solid #EAEAEA;
+    margin: 10px 0 0;
+    padding: 0;
+    clear: both;
+}
+
+.foldable-container:last-child {
+    border-bottom: 2px solid #DEDEDE;
+}
+
+.foldable-container .foldable-container:last-child {
+    border-bottom: none;
+}
+
+
+.foldable > .foldable-header .icon.icon-arrow-down--dark,
+.foldable.expanded > .foldable-header .icon.icon-arrow-up--dark {
+    display: inline-block;
+}
+
+.foldable > .foldable-header .icon.icon-arrow-up--dark,
+.foldable.expanded > .foldable-header .icon.icon-arrow-down--dark {
+    display: none;
+}
+
+.foldable  > .foldable-header.expandable {
+    cursor: pointer;
+}
+
+.foldable  > .foldable-header h1,
+.foldable  > .foldable-header h2,
+.foldable  > .foldable-header h3,
+.foldable  > .foldable-header h4,
+.foldable  > .foldable-header h5 {
+    margin: 10px 0 10px; padding: 0;
+}
+
+.foldable  > .foldable-body {
+    margin-top: 20px;
+    display: block;
+}
+
+.foldable > .foldable-body {
+    display: none;
+}
+
+.foldable.expanded > .foldable-body {
+    display: block;
+}
+
+.not-selectable,
+.checkbox label {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}

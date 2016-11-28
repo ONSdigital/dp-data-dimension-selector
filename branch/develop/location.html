@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <title>Test 1 | Members of the Armed Forces by residence type by sex by age | Office for National Statistics</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/00c4260/css/main.css">
     <link rel="stylesheet" href="css/style.css">
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="css/jquery.foldable.css">
 </head>
 <body data-dataset="armed-forces">
 
@@ -31,11 +30,13 @@
     <div class="col col--md-two-thirds col--lg-two-thirds">
 
         <a href="index.html" class="btn--everything margin-top--2">Back</a>
-        <h2 class="margin-bottom-md--0">Members of the Armed Forces</h2>
-        <h3>Select location</h3>
+        <h2 class="margin-top--2">Members of the Armed Forces by residence type by sex by age</h2>
+        <h1 class="margin-top--half margin-bottom">Select location</h1>
         <p class="flush">
-            You have selected <strong>1</strong> out of maximum of <strong>200</strong> locations.&nbsp;
-            <a>Select all locations</a>
+            You have selected <strong class="locations-selected">1</strong> out of maximum of
+            <strong class="locations-total"></strong> locations.&nbsp;
+            <a class="select-all">Select all locations</a>
+            <a class="deselect-all hidden">Deselect all locations</a>
         </p>
     </div>
 
@@ -45,7 +46,8 @@
         <a id="apply-changes" class="btn btn--primary btn--thick btn--wide btn--big margin-top--4 margin-bottom--8">Apply changes</a>
         <a id="cancel-changes" class="btn btn--secondary btn--thick btn--wide btn--big margin-top--4 margin-bottom--8">Cancel</a>
         <hr />
-        <a>Browse locations</a>
+        <a class="browse-locations">Browse locations</a>
+        <a class="search-locations">Search locations</a>
     </div>
 </div>
 
@@ -70,6 +72,8 @@
         src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"
         integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
         crossorigin="anonymous"></script>
+
+<script src="js/jquery.foldable.js" type="text/javascript"></script>
 <script src="js/locations.js" type="text/javascript"></script>
 
 </body>
