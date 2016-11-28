@@ -22,7 +22,17 @@ $(function() {
                 "communal": true
             },
             locations: {
-                "K04000001": true // England and Wales
+                "2000017":true,
+                "2000018":true,
+                "2000019":true,
+                "2000020":true,
+                "K04000001":true,
+                "E92000001":true,
+                "E12000001":true,
+                "E12000002":true,
+                "E12000003":true,
+                "E12000004":true,
+                "W92000004":true
             }
         };
 
