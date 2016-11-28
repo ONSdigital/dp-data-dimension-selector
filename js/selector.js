@@ -12,7 +12,6 @@ $(function() {
                 "50-and-over": true
             },
             sex: {
-                "all": true,
                 "female": true,
                 "male": true
             },
