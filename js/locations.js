@@ -152,7 +152,7 @@ $(function() {
             </div>
         `);
 
-        vm.locationData.options.forEach(function (location) {
+        vm.locationData.forEach(function (location) {
             renderFoldableSearchSelector(location, $('#widget'));
         });
 
@@ -185,9 +185,6 @@ $(function() {
         });
         $node.append($selector);
 
-        if (!isParent) {
-            return;
-        }
 
         var $body = $selector.find('.foldable-body');
 
@@ -203,6 +200,7 @@ $(function() {
 
         // generate body
         depth ++;
+        if (!isParent) return;
         location.options.forEach(function (locObj) {
             if (depth < 3) {
                 renderFoldableSearchSelector(locObj, $body, depth);
@@ -359,8 +357,8 @@ $(function() {
 
     function fetchLocations(callback) {
         $.get('data/locations.json', function(response) {
-            vm.locationData = response;
-            vm.locationList = flattenLocationTree(response);
+            vm.locationData = response.options;
+            vm.locationList = flattenLocationTree(vm.locationData);
             callback();
         });
     }
@@ -368,15 +366,16 @@ $(function() {
     function flattenLocationTree(data) {
 
         var list = [];
-        var opts = data.options || [];
+        var opts = data instanceof Array ? data : [data];
 
-        list.push({
-            id: data.id,
-            value: data.name
-        });
-
-        opts.forEach(function(item) {
-            list = list.concat(flattenLocationTree(item));
+        opts.forEach(function(location) {
+            list.push({
+                id: location.id,
+                value: location.name
+            });
+            if (location.options instanceof  Array && location.options.length > 0) {
+                list = list.concat(flattenLocationTree(location.options));
+            }
         });
 
         return list;
