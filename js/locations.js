@@ -304,7 +304,17 @@ $(function() {
             vm.selectedLocations = [];
         }
 
-        renderScreen();
+        switch (vm.currentScreen) {
+            case SCREEN.SEARCH:
+                renderSearchWidget();
+                renderSearchInput();
+                break;
+            case SCREEN.BROWSE:
+                updateLocationCheckboxes();
+                updateSelectAllCheckBoxes();
+                updateSelectAllButtons();
+                break;
+        }
     }
 
     function restoreSelectedLocations() {
@@ -312,6 +322,14 @@ $(function() {
             var $checkbox = $('input#location-' + locationId);
             $checkbox.prop('checked', true);
             updateSelectAllCheckBoxes();
+        });
+    }
+
+    function updateLocationCheckboxes() {
+        $('input[id*="location-"]').each(function(index, input) {
+            var $input = $(input);
+            var id = $input.data('value').toString();
+            $input.prop('checked', vm.selectedLocations.indexOf(id) > -1);
         });
     }
 
