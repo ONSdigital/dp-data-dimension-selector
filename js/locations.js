@@ -10,7 +10,7 @@ $(function() {
         locationData: null,
         selectedLocations: [],
         storedData: localStorage.getItem(dataset + '-selected'),
-        currentScreen: SCREEN.BROWSE
+        currentScreen: SCREEN.SEARCH
     };
 
     vm.selectedLocations = vm.storedData ? Object.keys(JSON.parse(vm.storedData).locations) : ["K04000001"];
@@ -109,7 +109,7 @@ $(function() {
                     <a class="remove-btn">Remove</a>
                 </div>
                 <div class="col margin-bottom--half">
-                    <input class="location-search col--md-15 col--lg-15" value="${locationName}">
+                    <input class="location-search col--md-17 col--lg-17" value="${locationName}">
                 </div>                
             </div>        
         `);
@@ -129,8 +129,14 @@ $(function() {
                 var dataIndex = $(this).closest('.ui-widget').data("index");
                 vm.selectedLocations[dataIndex] = ui.item.id;
                 updateLocationCount();
+            },
+            classes: {
+                "location-auto-complete": "highlight"
             }
-        });
+        })._renderItem = function(ul,item){
+          console.log('rendering');
+            return $("<li>").append("<a>"+item.value+"</a>").appendTo(ul);
+        };
 
         $locationInput.find('.remove-btn').on('click', function (evt) {
             var $widget = $(this).closest('.ui-widget');
