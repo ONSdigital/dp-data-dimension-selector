@@ -208,6 +208,11 @@ a:hover {
     padding: 6px 12px;
 }
 
+.location-search:focus {
+    outline: 1px solid #FF9933;
+}
+
+
 ul.ui-autocomplete.ui-menu {
     padding: 0;
     margin: 0;
