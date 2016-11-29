@@ -1,6 +1,5 @@
 $(function() {
     var dataset = $('body').data('dataset');
-    console.log('Viewing dataset: ', dataset);
 
     var selected = JSON.parse(localStorage.getItem(dataset + '-selected')) || {
             age: {
