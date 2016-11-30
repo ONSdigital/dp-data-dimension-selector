@@ -10,7 +10,7 @@ $(function() {
         locationData: null,
         selectedLocations: [],
         storedData: localStorage.getItem(dataset + '-selected'),
-        currentScreen: SCREEN.SEARCH
+        currentScreen: SCREEN.BROWSE
     };
 
     vm.selectedLocations = vm.storedData ? Object.keys(JSON.parse(vm.storedData).locations) : ["K04000001"];
