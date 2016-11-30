@@ -14,22 +14,18 @@
               "id": "E12000001",
               "name": "North East",
               "options": [
-                {
-                  "id": "2000017",
-                  "name": "Hartlepool"
-                },
-                {
-                  "id": "2000018",
-                  "name": "Middlesbrough"
-                },
-                {
-                  "id": "2000019",
-                  "name": "Redcar and Cleveland"
-                },
-                {
-                  "id": "2000020",
-                  "name": "Stockton-on-Tees"
-                }
+                { "id": "E06000047", "name": "County Durham" },
+                { "id": "E06000005", "name": "Darlington" },
+                { "id": "E06000001", "name": "Hartlepool" },
+                { "id": "E06000002", "name": "Middlesbrough" },
+                { "id": "E06000048", "name": "Northumberland" },
+                { "id": "E06000003", "name": "Redcar and Cleveland" },
+                { "id": "E06000004", "name": "Stockton-on-Tees" },
+                { "id": "E08000020", "name": "Gateshead" },
+                { "id": "E08000021", "name": "Newcastle upon Tyne" },
+                { "id": "E08000022", "name": "North Tyneside" },
+                { "id": "E08000023", "name": "South Tyneside" },
+                { "id": "E08000024", "name": "Sunderland" }
               ]
             },
             {
