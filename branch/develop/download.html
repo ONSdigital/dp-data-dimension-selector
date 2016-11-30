@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Members of the Armed Forces</title>
+    <title>Members of the Armed Forces | Office for National Statistics</title>
     <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/00c4260/css/main.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery.foldable.css">
 </head>
 <body>
 <nav>
@@ -60,6 +61,22 @@
                     <span class="loading-icon hide" id="loading-icon"></span>
                 </form>
             </div>
+            <div class="foldable file-types">
+                <div class="foldable-header"><a>Help with file types</a></div>
+                <div class="foldable-body">
+                    <h4>XLS</h4>
+                    This is a spreadsheet file format created by Microsoft for use with Microsoft Excel. XLS stands for eXceL Spreadsheet.
+
+                    <h4>CSV</h4>
+                    The advantage of CSV files is simplicity. A comma-separated values (CSV) file stores tabular data in plain text. They are widely supported by many types of programs and can be viewed in text editors.
+
+                    <h4>JSON</h4>
+                    This is an open-standard format that uses human-readable text to transmit data objects consisting of attribute–value pairs. JSON stands for JavaScript Obect Notation.
+
+                    <h4>Metadata</h4>
+                    Metadata is "data that provides information about other data". Metadata summarises basic information about data, which can make finding and working with particular instances of data easier.
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -76,6 +93,11 @@
         </div>
     </div>
 </footer>
+<script src="//code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+</script>
+<script src="js/jquery.foldable.js" type="text/javascript"></script>
 <script src="js/download.js" type="text/javascript"></script>
 </body>
 </html>

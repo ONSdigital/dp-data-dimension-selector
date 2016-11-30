@@ -21,12 +21,16 @@
             '
         }, options);
 
-        var $foldable = $(settings.template);
+        var $this = $(this);
+
+        var markupIsValid = $this.hasClass('foldable') && $this.find('.foldable-header, .foldable-body').length >= 2;
+        var $foldable = markupIsValid ? $this : $(settings.template);
+
         var $header = $foldable.children(".foldable-header");
 
         if (settings.labelHtml) {
             $header.html(settings.labelHtml);
-        } else {
+        } else if (settings.label) {
             $header.text(settings.label);
         }
 
@@ -36,14 +40,19 @@
                 $foldable.toggleClass('expanded', settings.expanded);
             }).addClass('expandable');
 
+
             if (settings.contentHtml) {
                 $foldable.children('.foldable-body').html(settings.contentHtml);
-            } else {
+            } else if (settings.content) {
                 $foldable.children('.foldable-body').text(settings.content);
             }
+
         }
 
-        $(this).append($foldable);
+        if (!markupIsValid) {
+            $this.append($foldable);
+        }
+
         $foldable.toggleClass('expanded', settings.expanded);
 
         // todo: replace element

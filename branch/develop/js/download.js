@@ -44,3 +44,10 @@ function displayDownload() {
         <a href="files/dataset.zip" class="btn btn--primary btn--big btn--thick btn--wide margin-top-md--2 margin-bottom-md--8">Download dataset (ZIP, 2MB)</a>
     `;
 }
+
+$(function () {
+    $('.foldable').foldable({
+        expanded: false,
+        expandable: true
+    })
+});

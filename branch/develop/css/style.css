@@ -205,5 +205,51 @@ a:hover {
 }
 
 .location-search  {
-    padding: 4px 8px;
+    padding: 6px 12px;
+}
+
+.location-search:focus {
+    outline: 1px solid #FF9933;
+}
+
+
+ul.ui-autocomplete.ui-menu {
+    padding: 0;
+    margin: 0;
+}
+ul.ui-autocomplete.ui-menu > li {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+ul.ui-autocomplete.ui-menu > li > div {
+    padding: 6px 12px;
+    margin: 0;
+    border: none;
+}
+
+ul.ui-autocomplete.ui-menu > li > div.ui-state-active {
+    background-color: #3B7A9E;
+}
+
+.footer-license {
+    border: none;
+}
+
+
+.file-types.foldable .foldable-header:before {
+    content: "\25BA";
+    color: #3B7A9E;
+    padding-right: 4px;
+}
+.file-types.foldable.expanded .foldable-header:before {
+  content: "\25BC";
+}
+
+.file-types.foldable .foldable-body {
+    border-left: solid #aaaaaa 3px;
+    padding-left: 16px;
+}
+.file-types.foldable .foldable-body h4 {
+    font-weight: 700;
 }
