@@ -5,5 +5,4 @@
 }
 .autocomplete-suggestion { position: relative; padding: 6px 12px; line-height: 23px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.02em; color: #333; }
 .autocomplete-suggestion b { font-weight: 700; }
-/*.autocomplete-suggestion.selected { background-color: #3B7A9E; color: white; }*/
-.autocomplete-suggestion.selected { background: #f0f0f0; } /* looks better */
+.autocomplete-suggestion.selected { background-color: #3B7A9E; color: white; }

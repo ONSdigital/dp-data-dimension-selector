@@ -209,7 +209,7 @@ a:hover {
 }
 
 .location-search:focus {
-    outline: 1px solid #FF9933;
+    outline: 3px solid #FF9933;
 }
 
 .footer-license {
