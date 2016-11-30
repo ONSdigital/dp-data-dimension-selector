@@ -231,3 +231,7 @@ ul.ui-autocomplete.ui-menu > li > div {
 ul.ui-autocomplete.ui-menu > li > div.ui-state-active {
     background-color: #3B7A9E;
 }
+
+.footer-license {
+    border: none;
+}
