@@ -4,7 +4,7 @@ p, div {
 }
 
 footer {
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
 .btn--big {
@@ -232,4 +232,9 @@ a:hover {
 }
 .file-types.foldable .foldable-body h4 {
     font-weight: 700;
+}
+
+.foldable.file-types {
+    border-top: 1px solid #aaaaaa;
+    padding-top: 16px;
 }
