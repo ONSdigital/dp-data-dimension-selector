@@ -235,3 +235,21 @@ ul.ui-autocomplete.ui-menu > li > div.ui-state-active {
 .footer-license {
     border: none;
 }
+
+
+.file-types.foldable .foldable-header:before {
+    content: "\25BA";
+    color: #3B7A9E;
+    padding-right: 4px;
+}
+.file-types.foldable.expanded .foldable-header:before {
+  content: "\25BC";
+}
+
+.file-types.foldable .foldable-body {
+    border-left: solid #aaaaaa 3px;
+    padding-left: 16px;
+}
+.file-types.foldable .foldable-body h4 {
+    font-weight: 700;
+}
