@@ -117,26 +117,34 @@ $(function() {
         $widget.find('> .widget-footer:last-child').before($locationInput);
         updateRemoveBtnsVisibility();
 
-        $locationInput.find('input.location-search').autocomplete({
-            source: function (request, response) {
+        $locationInput.find('input.location-search').autoComplete({
+            minChars: 1,
+            source: function(term, response) {
                 response(vm.locationList.filter(function (item) {
                     var notSelected = vm.selectedLocations.indexOf(item.id) === -1;
-                    var containsTerm = item.value.indexOf(request.term) > -1;
+                    var containsTerm = item.value.indexOf(term) > -1;
                     return notSelected && containsTerm;
-                }))
+                }));
             },
-            select: function( event, ui ) {
-                var dataIndex = $(this).closest('.ui-widget').data("index");
-                vm.selectedLocations[dataIndex] = ui.item.id;
+            renderItem: function (item, search, input){
+                // escape special characters
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var pattern = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                var label = item.value.replace(pattern, "<b>$1</b>");
+
+                return `
+                    <div class="autocomplete-suggestion" data-val="${item.value}" data-id="${item.id}">
+                        ${label}
+                    </div>
+                `;
+            },
+            onSelect: function(e, term, item){
+                var $input = $(e.target);
+                var dataIndex = $input.closest('.ui-widget').data('index');
+                vm.selectedLocations[dataIndex] = item.data('id').toString();
                 updateLocationCount();
-            },
-            classes: {
-                "location-auto-complete": "highlight"
             }
-        })._renderItem = function(ul,item){
-          console.log('rendering');
-            return $("<li>").append("<a>"+item.value+"</a>").appendTo(ul);
-        };
+        });
 
         $locationInput.find('.remove-btn').on('click', function (evt) {
             var $widget = $(this).closest('.ui-widget');
@@ -433,9 +441,9 @@ $(function() {
     function flattenLocationTree(data) {
 
         var list = [];
-        var opts = data instanceof Array ? data : [data];
+        var locations = data instanceof Array ? data : [data];
 
-        opts.forEach(function(location) {
+        locations.forEach(function(location) {
             list.push({
                 id: location.id,
                 value: location.name

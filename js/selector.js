@@ -2,45 +2,45 @@ $(function() {
     var dataset = $('body').data('dataset');
 
     var selected = JSON.parse(localStorage.getItem(dataset + '-selected')) || {
-            age: {
-                "all": true,
-                "16-and-over": true,
-                "16-to-24": true,
-                "25-to-34": true,
-                "35-to-49": true,
-                "50-and-over": true
-            },
-            sex: {
-                "female": true,
-                "male": true
-            },
-            residence: {
-                "all": true,
-                "household": true,
-                "communal": true
-            },
-            locations: {
-                "K04000001":true,
-                "E92000001":true,
-                "E12000001":true,
-                "E06000047":true,
-                "E06000005":true,
-                "E06000001":true,
-                "E06000002":true,
-                "E06000048":true,
-                "E06000003":true,
-                "E06000004":true,
-                "E08000020":true,
-                "E08000021":true,
-                "E08000022":true,
-                "E08000023":true,
-                "E08000024":true,
-                "E12000002":true,
-                "E12000003":true,
-                "E12000004":true,
-                "W92000004":true
-            }
-        };
+        age: {
+            "all": true,
+            "16-and-over": true,
+            "16-to-24": true,
+            "25-to-34": true,
+            "35-to-49": true,
+            "50-and-over": true
+        },
+        sex: {
+            "female": true,
+            "male": true
+        },
+        residence: {
+            "all": true,
+            "household": true,
+            "communal": true
+        },
+        locations: {
+            "K04000001":true,
+            "E92000001":true,
+            "E12000001":true,
+            "E06000047":true,
+            "E06000005":true,
+            "E06000001":true,
+            "E06000002":true,
+            "E06000048":true,
+            "E06000003":true,
+            "E06000004":true,
+            "E08000020":true,
+            "E08000021":true,
+            "E08000022":true,
+            "E08000023":true,
+            "E08000024":true,
+            "E12000002":true,
+            "E12000003":true,
+            "E12000004":true,
+            "W92000004":true
+        }
+    };
 
     var locationList = [];
 
