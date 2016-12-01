@@ -217,6 +217,20 @@ a:hover {
 }
 
 
+.selected-locations .foldable-container,
+.selected-locations .foldable-container:last-child {
+    border: none;
+}
+
+.selected-locations .foldable .foldable-header:before {
+    content: "\25BA";
+    color: #3B7A9E;
+    padding-right: 4px;
+}
+.selected-locations .foldable.expanded .foldable-header:before {
+    content: "\25BC";
+}
+
 .file-types.foldable .foldable-header:before {
     content: "\25BA";
     color: #3B7A9E;
