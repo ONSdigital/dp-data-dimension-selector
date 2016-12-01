@@ -95,6 +95,10 @@
                 <form id="options__sex-form">
                     <legend class="visuallyhidden">Choose a gender</legend>
                     <div class="checkbox">
+                        <input id="options__sex-checkbox--total" data-dimension="sex" data-option="all" type="checkbox" name="sex" value="total">
+                        <label id="sex-all" for="options__sex-checkbox--total">All categories: Sex</label>
+                    </div>
+                    <div class="checkbox">
                         <input id="options__sex-checkbox--female" data-dimension="sex" data-option="female" type="checkbox" name="sex" value="female">
                         <label id="sex-female" for="options__sex-checkbox--female">Female</label>
                     </div>
@@ -118,7 +122,7 @@
                     <legend class="visuallyhidden">Choose an age group</legend>
                     <div class="checkbox">
                         <input id="options__age-checkbox--total" data-dimension="age" data-option="all" type="checkbox" name="age" value="total">
-                        <label id="age-all" for="options__age-checkbox--total">All age ranges combined</label>
+                        <label id="age-all" for="options__age-checkbox--total">All categories: Age 16 and over</label>
                     </div>
                     <div class="checkbox">
                         <input id="options__age-checkbox--age-1" data-dimension="age" data-option="16-and-over" type="checkbox" name="age" value="16-and-over">
@@ -155,7 +159,7 @@
                         <legend class="visuallyhidden">Choose a residence type</legend>
                         <div class="checkbox">
                             <input id="options__residence-checkbox--total" data-dimension="residence" data-option="all" type="checkbox" name="residence" value="total">
-                            <label id="residence-all" for="options__residence-checkbox--total">Household and communal combined</label>
+                            <label id="residence-all" for="options__residence-checkbox--total">All categories: Residence Type</label>
                         </div>
                         <div class="checkbox">
                             <input id="options__residence-checkbox--household" data-dimension="residence" data-option="household" type="checkbox" name="residence" value="household">

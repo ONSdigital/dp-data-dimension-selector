@@ -4,7 +4,7 @@ p, div {
 }
 
 footer {
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
 .btn--big {
@@ -209,27 +209,7 @@ a:hover {
 }
 
 .location-search:focus {
-    outline: 1px solid #FF9933;
-}
-
-
-ul.ui-autocomplete.ui-menu {
-    padding: 0;
-    margin: 0;
-}
-ul.ui-autocomplete.ui-menu > li {
-    padding: 0;
-    margin: 0;
-    border: none;
-}
-ul.ui-autocomplete.ui-menu > li > div {
-    padding: 6px 12px;
-    margin: 0;
-    border: none;
-}
-
-ul.ui-autocomplete.ui-menu > li > div.ui-state-active {
-    background-color: #3B7A9E;
+    outline: 3px solid #FF9933;
 }
 
 .footer-license {
@@ -252,4 +232,9 @@ ul.ui-autocomplete.ui-menu > li > div.ui-state-active {
 }
 .file-types.foldable .foldable-body h4 {
     font-weight: 700;
+}
+
+.foldable.file-types {
+    border-top: 1px solid #aaaaaa;
+    padding-top: 16px;
 }
