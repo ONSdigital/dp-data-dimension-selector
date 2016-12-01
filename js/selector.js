@@ -330,28 +330,49 @@ $(function() {
 
 
     function populateData() {
-        $.each(selected, function (key, value) {
+        $.each(selected, function (key, data) {
 
             var selectedList = $('.selected-' + key);
-            $.each(value, function (childKey, childValue) {
-                if (childValue) {
+            var counter = 0;
+            var limit = 10;
+            for(var itemKey in data) {
+                counter ++;
+                if (data.hasOwnProperty(itemKey)) {
                     var selectedText = '';
+
                     switch (key) {
                         case 'locations':
                             var location = locationList.find(function (location) {
-                                return location.id === childKey;
+                                return location.id === itemKey;
                             });
                             selectedText = location.name;
                             break;
                         default:
-                            selectedText = $('#' + key + '-' + childKey).text();
+                            selectedText = $('#' + key + '-' + itemKey).text();
                             break;
                     }
-                    selectedList.append(wrapInDiv(selectedText));
+
+                    if (counter < limit) {
+                        selectedList.append(wrapInDiv(selectedText));
+                    } else {
+                        if (counter === limit) {
+                            var $foldableBox = $('<div class="foldable-container"></div>');
+                            selectedList.append($foldableBox);
+                            $foldableBox.foldable({
+                                expanded: false,
+                                expandable: true,
+                                labelHtml: `<a>All locations</a>`
+                            });
+                        }
+                        $('.foldable-container .foldable').addClass('locations');
+                        $('.foldable-container .foldable-body').append(wrapInDiv(selectedText));
+                    }
+
                 }
-            });
+            }
+
+
         });
-        saveToLocalStorage();
     }
 
     function fetchLocations(callback) {
