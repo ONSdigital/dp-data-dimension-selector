@@ -4,19 +4,18 @@ $(function() {
         BROWSE: 'browse',
         SEARCH: 'search'
     };
-    var dataset = $('body').data('dataset');
+
     var vm = {
         locationList: [],
         locationData: null,
         selectedLocations: [],
-        storedData: localStorage.getItem(dataset + '-selected'),
+        storedData: localStorage.getItem(config.storageKey),
         currentScreen: SCREEN.BROWSE
     };
 
 
 
     (function init() {
-        fetchDefaults(function (defaults) {
 
             vm.selectedLocations = vm.storedData
                 ? Object.keys(JSON.parse(vm.storedData).locations)
@@ -26,7 +25,7 @@ $(function() {
             fetchLocations(function () {
                 renderScreen();
             });
-        });
+
     })();
 
     function bindTopLevelHandlers() {
@@ -483,14 +482,13 @@ $(function() {
     }
 
     function saveToLocalStorage() {
-        var storageKey = dataset + '-selected';
-        var data = JSON.parse(localStorage.getItem(storageKey)) || {};
+        var data = JSON.parse(localStorage.getItem(config.storageKey)) || {};
         data.locations = {};
 
         vm.selectedLocations.forEach(function (code) {
             data.locations[code] = true; // why? check selector.js JQuery onReady block
         });
-        localStorage.setItem(storageKey, JSON.stringify(data));
+        localStorage.setItem(config.storageKey, JSON.stringify(data));
     }
 
     function updateRemoveBtnsVisibility() {

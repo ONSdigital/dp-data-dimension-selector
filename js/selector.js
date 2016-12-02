@@ -1,18 +1,15 @@
 $(function() {
-    var dataset = $('body').data('dataset');
 
     var selected;
     var locationList = [];
 
-    fetchDefaults(function (defaults) {
-        selected = JSON.parse(localStorage.getItem(dataset + '-selected')) || defaults;
+	selected = JSON.parse(localStorage.getItem(config.storageKey)) || config.selected;
 
-        fetchLocations(function (data) {
-            locationList = data;
-            populateData();
-            saveToLocalStorage();
-        });
-    });
+	fetchLocations(function (data) {
+		locationList = data;
+		populateData();
+		saveToLocalStorage();
+	});
 
 
     $('.js-change-sex').click(function () {
@@ -205,7 +202,7 @@ $(function() {
     }
 
     function saveToLocalStorage() {
-        localStorage.setItem(dataset + '-selected', JSON.stringify(selected));
+        localStorage.setItem(config.storageKey, JSON.stringify(selected));
     }
 
     function setSelectAllButton(modalClass) {
