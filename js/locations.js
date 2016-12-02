@@ -238,14 +238,27 @@ $(function() {
         // generate body
         depth ++;
         if (!isParent) return;
+
+        var leaves = [];
         location.options.forEach(function (locObj) {
-            if (depth < 3) {
-                renderFoldableSearchSelector(locObj, $body, depth);
-            } else {
+            if (!locObj.options || locObj.options.length === 0) {
+                leaves.push(locObj);
+            }
+        });
+
+        // generate leaves
+        if (leaves.length !== 0) {
+            leaves.forEach(function (locObj) {
                 var columnCheckBoxes = $('<div class="col-wrap"></div>')
                     .append(generateLocationCheckBoxColumn(locObj));
                 $body.append(columnCheckBoxes);
-            }
+            })
+            return;
+        }
+
+        // generate nested foldables
+        location.options.forEach(function (locObj) {
+            renderFoldableSearchSelector(locObj, $body, depth);
         });
     }
 
