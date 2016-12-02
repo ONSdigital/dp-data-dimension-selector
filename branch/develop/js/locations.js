@@ -13,12 +13,19 @@ $(function() {
         currentScreen: SCREEN.BROWSE
     };
 
-    vm.selectedLocations = vm.storedData ? Object.keys(JSON.parse(vm.storedData).locations) : ["K04000001"];
+
 
     (function init() {
-        bindTopLevelHandlers();
-        fetchLocations(function () {
-            renderScreen();
+        fetchDefaults(function (defaults) {
+
+            vm.selectedLocations = vm.storedData
+                ? Object.keys(JSON.parse(vm.storedData).locations)
+                : Object.keys(defaults.locations);
+
+            bindTopLevelHandlers();
+            fetchLocations(function () {
+                renderScreen();
+            });
         });
     })();
 
@@ -238,14 +245,27 @@ $(function() {
         // generate body
         depth ++;
         if (!isParent) return;
+
+        var leaves = [];
         location.options.forEach(function (locObj) {
-            if (depth < 3) {
-                renderFoldableSearchSelector(locObj, $body, depth);
-            } else {
+            if (!locObj.options || locObj.options.length === 0) {
+                leaves.push(locObj);
+            }
+        });
+
+        // generate leaves
+        if (leaves.length !== 0) {
+            leaves.forEach(function (locObj) {
                 var columnCheckBoxes = $('<div class="col-wrap"></div>')
                     .append(generateLocationCheckBoxColumn(locObj));
                 $body.append(columnCheckBoxes);
-            }
+            })
+            return;
+        }
+
+        // generate nested foldables
+        location.options.forEach(function (locObj) {
+            renderFoldableSearchSelector(locObj, $body, depth);
         });
     }
 
@@ -428,6 +448,12 @@ $(function() {
         parts[parts.length - 1] = path;
         var href = parts.join("/");
         window.location.href = href;
+    }
+
+    function fetchDefaults(callback) {
+        $.get('data/defaults.json', function (response) {
+            callback(response);
+        });
     }
 
     function fetchLocations(callback) {
