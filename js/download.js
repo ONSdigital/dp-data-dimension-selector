@@ -20,38 +20,39 @@ form.addEventListener('submit', function(event) {
         }
     }
     if (checkedFormats.length === 0) {
-        console.log('Please select at least one file format');
         formError.innerHTML = 'Please select at least one file format';
         return false;
     }
     formError.innerHTML = '';
-
+	
     // Disable checkboxes during file generate
     for (i = 0; i < checkboxes.length; i++) {
         checkboxes[i].disabled = true;
     }
 
-    main.innerHTML = `
-        <h1 class="margin-top--5 margin-bottom--0"">Loading...</h1>
-        <p class="page-intro__content margin-bottom-md--8">Please wait while generate your file.</p>
-    `;
-    setTimeout(displayDownload, 2000);
+    var selectedFiles = {}
+	$(event.target).find('[type=checkbox]').each(function (i, el) {
+		selectedFiles[el.name] = el.checked;
+	});
+
+	showPanel('download-loader');
+    setTimeout(function () {
+		showPanel('download-links');
+
+		$('#download-links').find('[data-format]').each(function (index, element) {
+			var $el = $(element);
+			$el.toggleClass('hidden', !selectedFiles[$el.data('format')]);
+
+		})
+
+	}, 2000);
 });
 
-function displayDownload() {
-    main.innerHTML = `
-        <h1 class="margin-top--5 margin-bottom--0"">Download options</h1>
-      	<p class="page-intro__content margin-top--half margin-bottom--2">These file is available for you to download.</p>
-      	<p class="margin-top--0 margin-bottom--0"><a href="files/dataset.xlsx" class="btn btn--primary btn--big btn--thick btn--wide">XLS (481KB)</a></p>
-        <p class="margin-top--0 margin-bottom--0"><a href="files/dataset.csv" class="btn btn--primary btn--big btn--thick btn--wide">CSV (10KB)</a></p>
-        <!--<a href="files/dataset.json" class="btn btn--primary btn--big btn--thick btn--wide margin-top-md--2">JSON (10KB)</a>-->
-		<p class="margin-bottom-md--2 margin-bottom-lg--2">
-			<strong>Supporting information</strong><br />
-			&middot;&nbsp;<a href="./files/background-notes.pdf" target="_blank">Background notes</a> (PDF, 168KB)
-		</p>
-		<p><a href="files/dataset.zip" class="btn btn--primary btn--big btn--thick btn--wide margin-top-md--2">Download all as ZIP (ZIP, 163KB)</a></p>
-		
-    `;
+function showPanel(panelId) {
+	var ids = ['download-form', 'download-loader', 'download-links'];
+	ids.forEach(function (id) {
+		$('#' + id).toggleClass('hidden', panelId !== id);
+	})
 }
 
 $(function () {
