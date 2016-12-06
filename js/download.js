@@ -24,7 +24,7 @@ form.addEventListener('submit', function(event) {
         return false;
     }
     formError.innerHTML = '';
-	
+
     // Disable checkboxes during file generate
     for (i = 0; i < checkboxes.length; i++) {
         checkboxes[i].disabled = true;
@@ -38,13 +38,11 @@ form.addEventListener('submit', function(event) {
 	showPanel('download-loader');
     setTimeout(function () {
 		showPanel('download-links');
-
 		$('#download-links').find('[data-format]').each(function (index, element) {
 			var $el = $(element);
 			$el.toggleClass('hidden', !selectedFiles[$el.data('format')]);
 
 		})
-
 	}, 2000);
 });
 
