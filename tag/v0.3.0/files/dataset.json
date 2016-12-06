@@ -1,0 +1,131 @@
+{
+	"id": "AF001EW",
+	"title": "AF001EW  Members of the Armed Forces by residence type by sex by age",
+	"dimensions": [
+		{
+			"id": "D000125",
+			"name": "Sex"
+		},
+		{
+			"id": "D000124",
+			"name": "Residence Type"
+		},
+		{
+			"id": "D000123",
+			"name": "Age"
+		},
+		{
+			"id": "D000126",
+			"name": "2011 Statistical Geography Hierarchy"
+		}
+	],
+	"data": {
+		"Rows": [
+			{
+				"Observation": 153223,
+				"Dimensions": [
+					{
+						"id": "DO000153",
+						"name": "Male"
+					},
+					{
+						"id": "DO000162",
+						"name": "Lives in a household"
+					},
+					{
+						"id": "DO000267",
+						"name": "Age 25 to 34"
+					},
+					{
+						"id": "K04000001",
+						"name": "England and Wales"
+					}
+				]
+			},
+			{
+				"Observation": 146348,
+				"Dimensions": [
+					{
+						"id": "DO000153",
+						"name": "Male"
+					},
+					{
+						"id": "DO000162",
+						"name": "Lives in a household"
+					},
+					{
+						"id": "DO000267",
+						"name": "Age 25 to 34"
+					},
+					{
+						"id": "E92000001",
+						"name": "England"
+					}
+				]
+			},
+			{
+				"Observation": 6875,
+				"Dimensions": [
+					{
+						"id": "DO000153",
+						"name": "Male"
+					},
+					{
+						"id": "DO000162",
+						"name": "Lives in a household"
+					},
+					{
+						"id": "DO000267",
+						"name": "Age 25 to 34"
+					},
+					{
+						"id": "W92000004",
+						"name": "Wales"
+					}
+				]
+			},
+			{
+				"Observation": 6742,
+				"Dimensions": [
+					{
+						"id": "DO000154",
+						"name": "Female"
+					},
+					{
+						"id": "DO000162",
+						"name": "Lives in a household"
+					},
+					{
+						"id": "DO000267",
+						"name": "Age 25 to 34"
+					},
+					{
+						"id": "E92000001",
+						"name": "England"
+					}
+				]
+			},
+			{
+				"Observation": 432,
+				"Dimensions": [
+					{
+						"id": "DO000154",
+						"name": "Female"
+					},
+					{
+						"id": "DO000162",
+						"name": "Lives in a household"
+					},
+					{
+						"id": "DO000267",
+						"name": "Age 25 to 34"
+					},
+					{
+						"id": "W92000004",
+						"name": "Wales"
+					}
+				]
+			}
+		]
+	}
+}

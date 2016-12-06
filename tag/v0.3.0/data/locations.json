@@ -1,0 +1,974 @@
+{
+  "id": "D000123",
+  "name": "Geography",
+  "options": [
+    {
+      "id": "1000001",
+      "name": "England and Wales",
+      "options": [
+        {
+          "id": "1000002",
+          "name": "England",
+          "options": [
+            {
+              "id": "1000004",
+              "name": "North East",
+              "options": [
+                {
+                  "id": "1000013",
+                  "name": "Hartlepool"
+                },
+                {
+                  "id": "1000014",
+                  "name": "Middlesbrough"
+                },
+                {
+                  "id": "1000015",
+                  "name": "Redcar and Cleveland"
+                },
+                {
+                  "id": "1000016",
+                  "name": "Stockton-on-Tees"
+                },
+                {
+                  "id": "1000017",
+                  "name": "Darlington"
+                },
+                {
+                  "id": "1000018",
+                  "name": "County Durham"
+                },
+                {
+                  "id": "1000019",
+                  "name": "Northumberland"
+                },
+                {
+                  "id": "1000020",
+                  "name": "Gateshead"
+                },
+                {
+                  "id": "1000021",
+                  "name": "Newcastle upon Tyne"
+                },
+                {
+                  "id": "1000022",
+                  "name": "North Tyneside"
+                },
+                {
+                  "id": "1000023",
+                  "name": "South Tyneside"
+                },
+                {
+                  "id": "1000024",
+                  "name": "Sunderland"
+                }
+              ]
+            },
+            {
+              "id": "1000005",
+              "name": "North West",
+              "options": [
+                {
+                  "id": "1000025",
+                  "name": "Halton"
+                },
+                {
+                  "id": "1000026",
+                  "name": "Warrington"
+                },
+                {
+                  "id": "1000028",
+                  "name": "Blackpool"
+                },
+                {
+                  "id": "1000029",
+                  "name": "Cheshire East"
+                },
+                {
+                  "id": "1000030",
+                  "name": "Cheshire West and Chester"
+                },
+                {
+                  "id": "1000031",
+                  "name": "Allerdale"
+                },
+                {
+                  "id": "1000032",
+                  "name": "Barrow-in-Furness"
+                },
+                {
+                  "id": "1000033",
+                  "name": "Carlisle"
+                },
+                {
+                  "id": "1000039",
+                  "name": "Fylde"
+                },
+                {
+                  "id": "1000041",
+                  "name": "Lancaster"
+                },
+                {
+                  "id": "1000043",
+                  "name": "Preston"
+                },
+                {
+                  "id": "1000049",
+                  "name": "Bolton"
+                },
+                {
+                  "id": "1000050",
+                  "name": "Bury"
+                },
+                {
+                  "id": "1000051",
+                  "name": "Manchester"
+                },
+                {
+                  "id": "1000052",
+                  "name": "Oldham"
+                },
+                {
+                  "id": "1000053",
+                  "name": "Rochdale"
+                },
+                {
+                  "id": "1000054",
+                  "name": "Salford"
+                },
+                {
+                  "id": "1000055",
+                  "name": "Stockport"
+                },
+                {
+                  "id": "1000056",
+                  "name": "Tameside"
+                },
+                {
+                  "id": "1000057",
+                  "name": "Trafford"
+                },
+                {
+                  "id": "1000058",
+                  "name": "Wigan"
+                },
+                {
+                  "id": "1000059",
+                  "name": "Knowsley"
+                },
+                {
+                  "id": "1000060",
+                  "name": "Liverpool"
+                },
+                {
+                  "id": "1000061",
+                  "name": "St. Helens"
+                },
+                {
+                  "id": "1000062",
+                  "name": "Sefton"
+                },
+                {
+                  "id": "1000063",
+                  "name": "Wirral"
+                }
+              ]
+            },
+            {
+              "id": "1000006",
+              "name": "Yorkshire and The Humber",
+              "options": [
+                {
+                  "id": "1000064",
+                  "name": "Kingston upon Hull, City of"
+                },
+                {
+                  "id": "1000065",
+                  "name": "East Riding of Yorkshire"
+                },
+                {
+                  "id": "1000066",
+                  "name": "North East Lincolnshire"
+                },
+                {
+                  "id": "1000067",
+                  "name": "North Lincolnshire"
+                },
+                {
+                  "id": "1000068",
+                  "name": "York"
+                },
+                {
+                  "id": "1000070",
+                  "name": "Hambleton"
+                },
+                {
+                  "id": "1000071",
+                  "name": "Harrogate"
+                },
+                {
+                  "id": "1000072",
+                  "name": "Richmondshire"
+                },
+                {
+                  "id": "1000074",
+                  "name": "Scarborough"
+                },
+                {
+                  "id": "1000075",
+                  "name": "Selby"
+                },
+                {
+                  "id": "1000076",
+                  "name": "Barnsley"
+                },
+                {
+                  "id": "1000077",
+                  "name": "Doncaster"
+                },
+                {
+                  "id": "1000078",
+                  "name": "Rotherham"
+                },
+                {
+                  "id": "1000079",
+                  "name": "Sheffield"
+                },
+                {
+                  "id": "1000080",
+                  "name": "Bradford"
+                },
+                {
+                  "id": "1000081",
+                  "name": "Calderdale"
+                },
+                {
+                  "id": "1000082",
+                  "name": "Kirklees"
+                },
+                {
+                  "id": "1000083",
+                  "name": "Leeds"
+                },
+                {
+                  "id": "1000084",
+                  "name": "Wakefield"
+                }
+              ]
+            },
+            {
+              "id": "1000007",
+              "name": "East Midlands",
+              "options": [
+                {
+                  "id": "1000085",
+                  "name": "Derby"
+                },
+                {
+                  "id": "1000087",
+                  "name": "Rutland"
+                },
+                {
+                  "id": "1000088",
+                  "name": "Nottingham"
+                },
+                {
+                  "id": "1000093",
+                  "name": "Erewash"
+                },
+                {
+                  "id": "1000098",
+                  "name": "Charnwood"
+                },
+                {
+                  "id": "1000101",
+                  "name": "Melton"
+                },
+                {
+                  "id": "1000105",
+                  "name": "East Lindsey"
+                },
+                {
+                  "id": "1000106",
+                  "name": "Lincoln"
+                },
+                {
+                  "id": "1000107",
+                  "name": "North Kesteven"
+                },
+                {
+                  "id": "1000108",
+                  "name": "South Holland"
+                },
+                {
+                  "id": "1000109",
+                  "name": "South Kesteven"
+                },
+                {
+                  "id": "1000110",
+                  "name": "West Lindsey"
+                },
+                {
+                  "id": "1000113",
+                  "name": "East Northamptonshire"
+                },
+                {
+                  "id": "1000115",
+                  "name": "Northampton"
+                },
+                {
+                  "id": "1000116",
+                  "name": "South Northamptonshire"
+                },
+                {
+                  "id": "1000118",
+                  "name": "Ashfield"
+                },
+                {
+                  "id": "1000119",
+                  "name": "Bassetlaw"
+                },
+                {
+                  "id": "1000120",
+                  "name": "Broxtowe"
+                },
+                {
+                  "id": "1000122",
+                  "name": "Mansfield"
+                },
+                {
+                  "id": "1000123",
+                  "name": "Newark and Sherwood"
+                }
+              ]
+            },
+            {
+              "id": "1000008",
+              "name": "West Midlands",
+              "options": [
+                {
+                  "id": "1000125",
+                  "name": "Herefordshire, County of"
+                },
+                {
+                  "id": "1000126",
+                  "name": "Telford and Wrekin"
+                },
+                {
+                  "id": "1000127",
+                  "name": "Stoke-on-Trent"
+                },
+                {
+                  "id": "1000128",
+                  "name": "Shropshire"
+                },
+                {
+                  "id": "1000131",
+                  "name": "Lichfield"
+                },
+                {
+                  "id": "1000132",
+                  "name": "Newcastle-under-Lyme"
+                },
+                {
+                  "id": "1000134",
+                  "name": "Stafford"
+                },
+                {
+                  "id": "1000138",
+                  "name": "Nuneaton and Bedworth"
+                },
+                {
+                  "id": "1000139",
+                  "name": "Rugby"
+                },
+                {
+                  "id": "1000140",
+                  "name": "Stratford-on-Avon"
+                },
+                {
+                  "id": "1000146",
+                  "name": "Wychavon"
+                },
+                {
+                  "id": "1000148",
+                  "name": "Birmingham"
+                },
+                {
+                  "id": "1000149",
+                  "name": "Coventry"
+                },
+                {
+                  "id": "1000150",
+                  "name": "Dudley"
+                },
+                {
+                  "id": "1000151",
+                  "name": "Sandwell"
+                },
+                {
+                  "id": "1000152",
+                  "name": "Solihull"
+                },
+                {
+                  "id": "1000153",
+                  "name": "Walsall"
+                },
+                {
+                  "id": "1000154",
+                  "name": "Wolverhampton"
+                }
+              ]
+            },
+            {
+              "id": "1000009",
+              "name": "East of England",
+              "options": [
+                {
+                  "id": "1000155",
+                  "name": "Peterborough"
+                },
+                {
+                  "id": "1000160",
+                  "name": "Central Bedfordshire"
+                },
+                {
+                  "id": "1000161",
+                  "name": "Cambridge"
+                },
+                {
+                  "id": "1000162",
+                  "name": "East Cambridgeshire"
+                },
+                {
+                  "id": "1000163",
+                  "name": "Fenland"
+                },
+                {
+                  "id": "1000164",
+                  "name": "Huntingdonshire"
+                },
+                {
+                  "id": "1000165",
+                  "name": "South Cambridgeshire"
+                },
+                {
+                  "id": "1000171",
+                  "name": "Colchester"
+                },
+                {
+                  "id": "1000177",
+                  "name": "Uttlesford"
+                },
+                {
+                  "id": "1000181",
+                  "name": "Hertsmere"
+                },
+                {
+                  "id": "1000185",
+                  "name": "Three Rivers"
+                },
+                {
+                  "id": "1000188",
+                  "name": "Breckland"
+                },
+                {
+                  "id": "1000189",
+                  "name": "Broadland"
+                },
+                {
+                  "id": "1000191",
+                  "name": "King\u0027s Lynn and West Norfolk"
+                },
+                {
+                  "id": "1000192",
+                  "name": "North Norfolk"
+                },
+                {
+                  "id": "1000193",
+                  "name": "Norwich"
+                },
+                {
+                  "id": "1000194",
+                  "name": "South Norfolk"
+                },
+                {
+                  "id": "1000195",
+                  "name": "Babergh"
+                },
+                {
+                  "id": "1000196",
+                  "name": "Forest Heath"
+                },
+                {
+                  "id": "1000197",
+                  "name": "Ipswich"
+                },
+                {
+                  "id": "1000198",
+                  "name": "Mid Suffolk"
+                },
+                {
+                  "id": "1000199",
+                  "name": "St Edmundsbury"
+                },
+                {
+                  "id": "1000200",
+                  "name": "Suffolk Coastal"
+                },
+                {
+                  "id": "1000201",
+                  "name": "Waveney"
+                }
+              ]
+            },
+            {
+              "id": "1000010",
+              "name": "London",
+              "options": [
+                {
+                  "id": "1000207",
+                  "name": "Bromley"
+                },
+                {
+                  "id": "1000208",
+                  "name": "Camden"
+                },
+                {
+                  "id": "1000209",
+                  "name": "Croydon"
+                },
+                {
+                  "id": "1000212",
+                  "name": "Greenwich"
+                },
+                {
+                  "id": "1000214",
+                  "name": "Hammersmith and Fulham"
+                },
+                {
+                  "id": "1000216",
+                  "name": "Harrow"
+                },
+                {
+                  "id": "1000218",
+                  "name": "Hillingdon"
+                },
+                {
+                  "id": "1000219",
+                  "name": "Hounslow"
+                },
+                {
+                  "id": "1000222",
+                  "name": "Kingston upon Thames"
+                },
+                {
+                  "id": "1000223",
+                  "name": "Lambeth"
+                },
+                {
+                  "id": "1000228",
+                  "name": "Richmond upon Thames"
+                },
+                {
+                  "id": "1000231",
+                  "name": "Tower Hamlets"
+                },
+                {
+                  "id": "1000233",
+                  "name": "Wandsworth"
+                },
+                {
+                  "id": "1000234",
+                  "name": "Westminster"
+                }
+              ]
+            },
+            {
+              "id": "1000011",
+              "name": "South East",
+              "options": [
+                {
+                  "id": "1000235",
+                  "name": "Medway"
+                },
+                {
+                  "id": "1000236",
+                  "name": "Bracknell Forest"
+                },
+                {
+                  "id": "1000237",
+                  "name": "West Berkshire"
+                },
+                {
+                  "id": "1000240",
+                  "name": "Windsor and Maidenhead"
+                },
+                {
+                  "id": "1000241",
+                  "name": "Wokingham"
+                },
+                {
+                  "id": "1000242",
+                  "name": "Milton Keynes"
+                },
+                {
+                  "id": "1000244",
+                  "name": "Portsmouth"
+                },
+                {
+                  "id": "1000245",
+                  "name": "Southampton"
+                },
+                {
+                  "id": "1000246",
+                  "name": "Isle of Wight"
+                },
+                {
+                  "id": "1000247",
+                  "name": "Aylesbury Vale"
+                },
+                {
+                  "id": "1000249",
+                  "name": "South Bucks"
+                },
+                {
+                  "id": "1000250",
+                  "name": "Wycombe"
+                },
+                {
+                  "id": "1000256",
+                  "name": "Basingstoke and Deane"
+                },
+                {
+                  "id": "1000257",
+                  "name": "East Hampshire"
+                },
+                {
+                  "id": "1000258",
+                  "name": "Eastleigh"
+                },
+                {
+                  "id": "1000259",
+                  "name": "Fareham"
+                },
+                {
+                  "id": "1000260",
+                  "name": "Gosport"
+                },
+                {
+                  "id": "1000261",
+                  "name": "Hart"
+                },
+                {
+                  "id": "1000262",
+                  "name": "Havant"
+                },
+                {
+                  "id": "1000263",
+                  "name": "New Forest"
+                },
+                {
+                  "id": "1000264",
+                  "name": "Rushmoor"
+                },
+                {
+                  "id": "1000265",
+                  "name": "Test Valley"
+                },
+                {
+                  "id": "1000266",
+                  "name": "Winchester"
+                },
+                {
+                  "id": "1000267",
+                  "name": "Ashford"
+                },
+                {
+                  "id": "1000268",
+                  "name": "Canterbury"
+                },
+                {
+                  "id": "1000270",
+                  "name": "Dover"
+                },
+                {
+                  "id": "1000272",
+                  "name": "Maidstone"
+                },
+                {
+                  "id": "1000274",
+                  "name": "Shepway"
+                },
+                {
+                  "id": "1000276",
+                  "name": "Thanet"
+                },
+                {
+                  "id": "1000279",
+                  "name": "Cherwell"
+                },
+                {
+                  "id": "1000280",
+                  "name": "Oxford"
+                },
+                {
+                  "id": "1000281",
+                  "name": "South Oxfordshire"
+                },
+                {
+                  "id": "1000282",
+                  "name": "Vale of White Horse"
+                },
+                {
+                  "id": "1000283",
+                  "name": "West Oxfordshire"
+                },
+                {
+                  "id": "1000286",
+                  "name": "Guildford"
+                },
+                {
+                  "id": "1000291",
+                  "name": "Surrey Heath"
+                },
+                {
+                  "id": "1000293",
+                  "name": "Waverley"
+                },
+                {
+                  "id": "1000294",
+                  "name": "Woking"
+                },
+                {
+                  "id": "1000296",
+                  "name": "Arun"
+                },
+                {
+                  "id": "1000297",
+                  "name": "Chichester"
+                }
+              ]
+            },
+            {
+              "id": "1000012",
+              "name": "South West",
+              "options": [
+                {
+                  "id": "1000302",
+                  "name": "Bath and North East Somerset"
+                },
+                {
+                  "id": "1000303",
+                  "name": "Bristol, City of"
+                },
+                {
+                  "id": "1000304",
+                  "name": "North Somerset"
+                },
+                {
+                  "id": "1000305",
+                  "name": "South Gloucestershire"
+                },
+                {
+                  "id": "1000306",
+                  "name": "Plymouth"
+                },
+                {
+                  "id": "1000307",
+                  "name": "Torbay"
+                },
+                {
+                  "id": "1000308",
+                  "name": "Bournemouth"
+                },
+                {
+                  "id": "1000309",
+                  "name": "Poole"
+                },
+                {
+                  "id": "1000310",
+                  "name": "Swindon"
+                },
+                {
+                  "id": "1000311",
+                  "name": "Cornwall"
+                },
+                {
+                  "id": "1000313",
+                  "name": "Wiltshire"
+                },
+                {
+                  "id": "1000314",
+                  "name": "East Devon"
+                },
+                {
+                  "id": "1000315",
+                  "name": "Exeter"
+                },
+                {
+                  "id": "1000316",
+                  "name": "Mid Devon"
+                },
+                {
+                  "id": "1000317",
+                  "name": "North Devon"
+                },
+                {
+                  "id": "1000318",
+                  "name": "South Hams"
+                },
+                {
+                  "id": "1000319",
+                  "name": "Teignbridge"
+                },
+                {
+                  "id": "1000321",
+                  "name": "West Devon"
+                },
+                {
+                  "id": "1000323",
+                  "name": "East Dorset"
+                },
+                {
+                  "id": "1000324",
+                  "name": "North Dorset"
+                },
+                {
+                  "id": "1000325",
+                  "name": "Purbeck"
+                },
+                {
+                  "id": "1000326",
+                  "name": "West Dorset"
+                },
+                {
+                  "id": "1000327",
+                  "name": "Weymouth and Portland"
+                },
+                {
+                  "id": "1000328",
+                  "name": "Cheltenham"
+                },
+                {
+                  "id": "1000329",
+                  "name": "Cotswold"
+                },
+                {
+                  "id": "1000330",
+                  "name": "Forest of Dean"
+                },
+                {
+                  "id": "1000331",
+                  "name": "Gloucester"
+                },
+                {
+                  "id": "1000332",
+                  "name": "Stroud"
+                },
+                {
+                  "id": "1000333",
+                  "name": "Tewkesbury"
+                },
+                {
+                  "id": "1000334",
+                  "name": "Mendip"
+                },
+                {
+                  "id": "1000335",
+                  "name": "Sedgemoor"
+                },
+                {
+                  "id": "1000336",
+                  "name": "South Somerset"
+                },
+                {
+                  "id": "1000337",
+                  "name": "Taunton Deane"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1000003",
+          "name": "Wales",
+          "options": [
+            {
+              "id": "1000339",
+              "name": "Isle of Anglesey"
+            },
+            {
+              "id": "1000340",
+              "name": "Gwynedd"
+            },
+            {
+              "id": "1000341",
+              "name": "Conwy"
+            },
+            {
+              "id": "1000342",
+              "name": "Denbighshire"
+            },
+            {
+              "id": "1000343",
+              "name": "Flintshire"
+            },
+            {
+              "id": "1000344",
+              "name": "Wrexham"
+            },
+            {
+              "id": "1000346",
+              "name": "Pembrokeshire"
+            },
+            {
+              "id": "1000347",
+              "name": "Carmarthenshire"
+            },
+            {
+              "id": "1000348",
+              "name": "Swansea"
+            },
+            {
+              "id": "1000349",
+              "name": "Neath Port Talbot"
+            },
+            {
+              "id": "1000350",
+              "name": "Bridgend"
+            },
+            {
+              "id": "1000351",
+              "name": "The Vale of Glamorgan"
+            },
+            {
+              "id": "1000352",
+              "name": "Cardiff"
+            },
+            {
+              "id": "1000353",
+              "name": "Rhondda Cynon Taf"
+            },
+            {
+              "id": "1000354",
+              "name": "Caerphilly"
+            },
+            {
+              "id": "1000357",
+              "name": "Monmouthshire"
+            },
+            {
+              "id": "1000358",
+              "name": "Newport"
+            },
+            {
+              "id": "1000359",
+              "name": "Powys"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

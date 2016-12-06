@@ -1,0 +1,79 @@
+.widget-browse  > .foldable-container {
+    margin-left: 16px !important;
+}
+
+.foldable-container {
+    border-top: 2px solid #EAEAEA;
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+
+.foldable-container:last-child {
+    border-bottom: 2px solid #DEDEDE;
+}
+
+.foldable-container .foldable-container:last-child {
+    border-bottom: none;
+}
+
+
+.foldable > .foldable-header .icon.icon-arrow-down--dark,
+.foldable.expanded > .foldable-header .icon.icon-arrow-up--dark {
+    display: inline-block;
+    margin-top: 16px;
+}
+
+.foldable > .foldable-header .icon.icon-arrow-up--dark,
+.foldable.expanded > .foldable-header .icon.icon-arrow-down--dark {
+    display: none;
+}
+
+.foldable  > .foldable-header.expandable {
+    cursor: pointer;
+}
+
+.foldable  > .foldable-header h1,
+.foldable  > .foldable-header h2,
+.foldable  > .foldable-header h3,
+.foldable  > .foldable-header h4,
+.foldable  > .foldable-header h5 {
+    margin: 0;
+    padding: 16px 0;
+}
+
+.foldable.expanded .foldable.expanded .foldable-body {
+    margin-top: 0;
+}
+
+.foldable.expanded  .foldable.expanded  > .foldable-body .margin-bottom--double {
+    margin-bottom: 16px !important;
+}
+
+.foldable.expanded .foldable.expanded .foldable.expanded  > .foldable-body .margin-bottom--double:first-child {
+    margin-bottom: 32px !important;
+}
+
+.foldable  > .foldable-body {
+    margin-top: 10px;
+    display: block;
+}
+
+.foldable > .foldable-body {
+    display: none;
+}
+
+.foldable.expanded > .foldable-body {
+    display: block;
+}
+
+.not-selectable,
+.checkbox label {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
