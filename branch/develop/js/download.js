@@ -20,29 +20,39 @@ form.addEventListener('submit', function(event) {
         }
     }
     if (checkedFormats.length === 0) {
-        console.log('Please select at least one file format');
         formError.innerHTML = 'Please select at least one file format';
         return false;
     }
     formError.innerHTML = '';
-
+	
     // Disable checkboxes during file generate
     for (i = 0; i < checkboxes.length; i++) {
         checkboxes[i].disabled = true;
     }
 
-    downloadBody.innerHTML = `
-        <h1 class="margin-top--5 margin-bottom--0"">Loading...</h1>
-        <p class="page-intro__content margin-bottom-md--8">Please wait while generate your file.</p>
-    `;
-    setTimeout(displayDownload, 2000);
+    var selectedFiles = {}
+	$(event.target).find('[type=checkbox]').each(function (i, el) {
+		selectedFiles[el.name] = el.checked;
+	});
+
+	showPanel('download-loader');
+    setTimeout(function () {
+		showPanel('download-links');
+
+		$('#download-links').find('[data-format]').each(function (index, element) {
+			var $el = $(element);
+			$el.toggleClass('hidden', !selectedFiles[$el.data('format')]);
+
+		})
+
+	}, 2000);
 });
 
-function displayDownload() {
-    downloadBody.innerHTML = `
-        <h1 class="margin-top--5 margin-bottom--0"">Download file</h1>
-        <a href="files/dataset.zip" class="btn btn--primary btn--big btn--thick btn--wide margin-top-md--2 margin-bottom-md--8">Download dataset (ZIP, 2MB)</a>
-    `;
+function showPanel(panelId) {
+	var ids = ['download-form', 'download-loader', 'download-links'];
+	ids.forEach(function (id) {
+		$('#' + id).toggleClass('hidden', panelId !== id);
+	})
 }
 
 $(function () {
