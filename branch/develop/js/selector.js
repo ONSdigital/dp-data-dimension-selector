@@ -89,7 +89,7 @@ $(function() {
             var limit = 10;
             for(var itemKey in data) {
                 counter ++;
-                if (data.hasOwnProperty(itemKey)) {
+                if (data.hasOwnProperty(itemKey) && data[itemKey]) {
                     var selectedText = '';
 
                     switch (key) {
@@ -103,7 +103,6 @@ $(function() {
                             selectedText = $('#' + key + '-' + itemKey).text();
                             break;
                     }
-
                     if (counter < limit) {
                         selectedList.append(wrapInDiv(selectedText));
                     } else {
